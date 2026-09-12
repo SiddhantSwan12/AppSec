@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites errors="0" failures="0" skipped="0" tests="18" time="21.838358">
+  <testsuite name="schemathesis" hostname="AVA" errors="0" failures="0" skipped="0" tests="18" time="21.838358">
+    <testcase name="POST /tickets" time="5.380663" />
+    <testcase name="POST /transfers" time="1.157506" />
+    <testcase name="GET /admin/audit-events" time="1.104027" />
+    <testcase name="GET /admin/tickets" time="0.745743" />
+    <testcase name="GET /admin/transactions" time="0.799115" />
+    <testcase name="GET /admin/users" time="0.747521" />
+    <testcase name="GET /auth/csrf" time="0.095381" />
+    <testcase name="GET /auth/me" time="0.443432" />
+    <testcase name="GET /health" time="0.085283" />
+    <testcase name="GET /tickets" time="0.828186" />
+    <testcase name="GET /transactions" time="1.087227" />
+    <testcase name="GET /transactions/{id}" time="0.522135" />
+    <testcase name="GET /wallet" time="0.480282" />
+    <testcase name="PATCH /profile" time="0.731713" />
+    <testcase name="POST /tickets/{id}/comments" time="1.353383" />
+    <testcase name="GET /tickets/{id}" time="0.787510" />
+    <testcase name="PATCH /admin/tickets/{id}" time="0.774554" />
+    <testcase name="Stateful tests" time="4.714698" />
+  </testsuite>
+</testsuites>

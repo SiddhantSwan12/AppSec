@@ -1,0 +1,57 @@
+{
+  "name": "securewallet",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm run dev -w apps/api\" \"npm run dev -w apps/web\"",
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "lint": "eslint . --max-warnings 0",
+    "test": "npm run test -w apps/api",
+    "test:e2e": "playwright test",
+    "db:migrate": "npm run db:migrate -w apps/api",
+    "db:seed": "npm run db:seed -w apps/api",
+    "lab": "npm run lab -w apps/api",
+    "lab:demo": "tsx --env-file=.env scripts/lab-demo.ts",
+    "lab:reset": "tsx --env-file=.env apps/api/src/lab/db.ts --reset",
+    "security:run": "tsx --env-file=.env scripts/security-run.ts",
+    "security:lab": "tsx --env-file=.env scripts/security-run.ts --lab",
+    "security:fuzz": "tsx --env-file=.env scripts/fuzz.ts",
+    "semgrep:verify": "node scripts/semgrep-verify.mjs",
+    "sbom": "node scripts/sbom.mjs",
+    "db:reset": "tsx --env-file=.env scripts/reset.ts",
+    "docs:check": "node scripts/check-openapi.mjs",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@apidevtools/swagger-parser": "^13.0.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.20.2",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/supertest": "^7.2.1",
+    "concurrently": "^10.0.5",
+    "eslint": "^10.10.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "prettier": "^3.9.6",
+    "supertest": "^7.2.2",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.13",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.0"
+  },
+  "type": "module"
+}

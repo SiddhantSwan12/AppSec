@@ -1,0 +1,35 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      # One PR per ecosystem for routine bumps keeps review attention on the
+      # updates that actually change behaviour.
+      dev-dependencies:
+        dependency-type: development
+        update-types: [minor, patch]
+      production-patches:
+        dependency-type: production
+        update-types: [patch]
+
+  - package-ecosystem: pip
+    directory: /security-runner
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    # Workflows currently reference actions by tag. A tag is mutable, so a
+    # compromised action repository can change what a pinned-looking reference
+    # actually runs. Dependabot keeps SHA pins current once they are applied;
+    # see docs/SUPPLY-CHAIN.md for the pinning step and why it is outstanding.

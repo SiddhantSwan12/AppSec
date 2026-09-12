@@ -1,0 +1,3206 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:f9d772ec-5328-4772-befe-2c59cb5e9ce7",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-12T08:27:48.356Z",
+    "lifecycles": [
+      {
+        "phase": "build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "npm",
+        "name": "cli",
+        "version": "11.16.0"
+      }
+    ],
+    "component": {
+      "bom-ref": "securewallet@0.1.0",
+      "type": "application",
+      "name": "AppSSec",
+      "version": "0.1.0",
+      "scope": "required",
+      "purl": "pkg:npm/securewallet@0.1.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": []
+    }
+  },
+  "components": [
+    {
+      "bom-ref": "@securewallet/api@0.1.0",
+      "type": "library",
+      "name": "api",
+      "version": "0.1.0",
+      "scope": "required",
+      "purl": "pkg:npm/%40securewallet/api@0.1.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": []
+    },
+    {
+      "bom-ref": "@securewallet/web@0.1.0",
+      "type": "library",
+      "name": "web",
+      "version": "0.1.0",
+      "scope": "required",
+      "purl": "pkg:npm/%40securewallet/web@0.1.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": []
+    },
+    {
+      "bom-ref": "@epic-web/invariant@1.0.0",
+      "type": "library",
+      "name": "@epic-web/invariant",
+      "version": "1.0.0",
+      "scope": "required",
+      "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com/)",
+      "description": "Type safe utilities for throwing errors (and responses) if things aren't quite right. Inspired by npm.im/invariant",
+      "purl": "pkg:npm/%40epic-web/invariant@1.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@epic-web/invariant/-/invariant-1.0.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/epicweb-dev/invariant"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/epicweb-dev/invariant#readme"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/epicweb-dev/invariant/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "96b4cfaa0bdf150b51fde63faa4233a7df0e19d349bb49b98e2deafe7248f2fdd25e444a1275a23b13266ef712a00233bff7068aebd1cb9ee4e2cb8a41201dc0"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@fontsource/public-sans@5.3.0",
+      "type": "library",
+      "name": "@fontsource/public-sans",
+      "version": "5.3.0",
+      "scope": "required",
+      "author": "Google Inc.",
+      "description": "Self-host the Public Sans font in a neatly bundled NPM package.",
+      "purl": "pkg:npm/%40fontsource/public-sans@5.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@fontsource/public-sans/-/public-sans-5.3.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/fontsource/font-files.git"
+        },
+        {
+          "type": "website",
+          "url": "https://fontsource.org/fonts/public-sans"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9233832344b7cddbf4981602210f136c16b26a2aacce973651b84988eddb8c8a95557cdc59f1d2b76a3758108b398de3b9a19a428cb832858272099f239842b8"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "OFL-1.1"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@img/colour@1.1.0",
+      "type": "library",
+      "name": "@img/colour",
+      "version": "1.1.0",
+      "scope": "optional",
+      "description": "The ESM-only 'color' package made compatible for use with CommonJS runtimes",
+      "purl": "pkg:npm/%40img/colour@1.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/lovell/colour.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4ddefaabb8f9ee8fed2d57604bbe3a7180117d2cb193c8847d1c5ec0bf61e0e3336216d6e1301ca69974993e1ecaa5dd761e8bfe3c2833be66a3b8b16bfa4279"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@img/sharp-win32-x64@0.35.4",
+      "type": "library",
+      "name": "@img/sharp-win32-x64",
+      "version": "0.35.4",
+      "scope": "optional",
+      "author": "Lovell Fuller <npm@lovell.info>",
+      "description": "Prebuilt sharp for use with Windows x64",
+      "purl": "pkg:npm/%40img/sharp-win32-x64@0.35.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@img/sharp-win32-x64/-/sharp-win32-x64-0.35.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/lovell/sharp.git"
+        },
+        {
+          "type": "website",
+          "url": "https://sharp.pixelplumbing.com"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5ed9a762105cace46c2785c99e0cb3aff1163f485164b019445680a5d2aebe2caa17bf3eca5c61db2d3a666b542c030e9ce6c9dee72937401cc125a7328c1346"
+        }
+      ],
+      "licenses": [
+        {
+          "expression": "Apache-2.0 AND LGPL-3.0-or-later"
+        }
+      ]
+    },
+    {
+      "bom-ref": "@next/env@16.3.4",
+      "type": "library",
+      "name": "@next/env",
+      "version": "16.3.4",
+      "scope": "required",
+      "author": "Next.js Team <support@vercel.com>",
+      "description": "Next.js dotenv file loading",
+      "purl": "pkg:npm/%40next/env@16.3.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@next/env/-/env-16.3.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vercel/next.js"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "7235999d451aea366ada415a35efd9c89759a27399fd0a0dd1991ada7cff14b3ab7f1d78a50b8cf5ce5169256458caa076de24b203c03163f21d2b3f0b2578f1"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@next/swc-win32-x64-msvc@16.3.4",
+      "type": "library",
+      "name": "@next/swc-win32-x64-msvc",
+      "version": "16.3.4",
+      "scope": "optional",
+      "purl": "pkg:npm/%40next/swc-win32-x64-msvc@16.3.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-16.3.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/vercel/next.js"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "bef073c2ed696100a9f7699a642142230fd780e4cc479b6eafd1a36a4c08a36726c114cc29a8d16590d2f7e7b82ac51958abb5134d3b5947801574518d97aecf"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@phc/format@1.0.0",
+      "type": "library",
+      "name": "@phc/format",
+      "version": "1.0.0",
+      "scope": "required",
+      "author": "Simone Primarosa <simonepri@outlook.com> (https://simoneprimarosa.com)",
+      "description": "PHC string format serializer/deserializer",
+      "purl": "pkg:npm/%40phc/format@1.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@phc/format/-/format-1.0.0.tgz"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/simonepri/phc-format#readme"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/simonepri/phc-format/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9bb5fd53a046dbe27e47595239d0a22132cbaf19be71694d2371d4140f76a0b3bbece6c637368a761f2930ba9d65cb21b642ae57ce2894d3570df31ce057b305"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "@swc/helpers@0.5.23",
+      "type": "library",
+      "name": "@swc/helpers",
+      "version": "0.5.23",
+      "scope": "required",
+      "author": "강동윤 <kdy1997.dev@gmail.com>",
+      "description": "External helpers for the swc project.",
+      "purl": "pkg:npm/%40swc/helpers@0.5.23",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.23.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/swc-project/swc.git"
+        },
+        {
+          "type": "website",
+          "url": "https://swc.rs"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/swc-project/swc/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e654ac30e4d751178f8250dfbee01052a9067a4f47836924b0e61acb69b4f9747ef9bd8d5982ffe2c5b2baf54122cf282a725ac64762f7085a2ffb2a375dda7f"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "accepts@2.0.0",
+      "type": "library",
+      "name": "accepts",
+      "version": "2.0.0",
+      "scope": "required",
+      "description": "Higher-level content negotiation",
+      "purl": "pkg:npm/accepts@2.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/accepts/-/accepts-2.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e5cbe0e82b4ac1f81d995a98d562225ca7374356e446a18b8bed96ffa6a8fba63b82efd10b046e021184ce1e41e0a96ccd2b932e0658baa16aa396c89a334a9e"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "argon2@0.45.1",
+      "type": "library",
+      "name": "argon2",
+      "version": "0.45.1",
+      "scope": "required",
+      "author": "Ranieri Althoff <ranisalt+argon2@gmail.com>",
+      "description": "An Argon2 library for Node",
+      "purl": "pkg:npm/argon2@0.45.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/argon2/-/argon2-0.45.1.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/ranisalt/node-argon2.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/ranisalt/node-argon2#readme"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/ranisalt/node-argon2/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "b249befd60a3906a8243117b146d4bb995cce72bdb16381b7e2086b2e776a0b81a0e187a6fa75b1f46f51248216ccfb1c78063f00a5ef8a2a08b1a0895666271"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "body-parser@2.3.0",
+      "type": "library",
+      "name": "body-parser",
+      "version": "2.3.0",
+      "scope": "required",
+      "description": "Node.js body parsing middleware",
+      "purl": "pkg:npm/body-parser@2.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/body-parser/-/body-parser-2.3.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "d9c1a626ea5a36083e414c152c0b9c0ee5aea0c67a117f621c346cc19e65b0d6049b03da4649cc3c22d9cf4ef24f356affcde9e28ff0cdb0d96c1ad3bc619323"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "content-type@2.1.0",
+      "type": "library",
+      "name": "content-type",
+      "version": "2.1.0",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Create and parse HTTP Content-Type header",
+      "purl": "pkg:npm/content-type@2.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/content-type/-/content-type-2.1.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9a3ed43d71348daa9a3acba435945411f122d8070bec2fefc26c1c1d5d0ef7b78ed44d69c4166eca3959af1e6c79368d060d54ebea37e70a5adf941f71cfbb6a"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "bytes@3.1.2",
+      "type": "library",
+      "name": "bytes",
+      "version": "3.1.2",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
+      "description": "Utility to parse a string bytes to bytes and vice-versa",
+      "purl": "pkg:npm/bytes@3.1.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "fcd7fb4f2cd3c7a4b7c9124e6ce015efde7aafc72bdbe3a3f000b976df3048fdc1400a1e5f9f0da07c8253c3fccc690d5d2b634d28ba7f33ba174a4175c61b12"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "client-only@0.0.1",
+      "type": "library",
+      "name": "client-only",
+      "version": "0.0.1",
+      "scope": "required",
+      "description": "This is a marker package to indicate that a module can only be used in Client Components.",
+      "purl": "pkg:npm/client-only@0.0.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz"
+        },
+        {
+          "type": "website",
+          "url": "https://reactjs.org/"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "215dcebb48d233366b777a59e3c9cb913f4303b020d699cfcda8908695bb73745b72aab3bf3cd5bbe2fc81fa8ca7ff08336310b528aa682c6badc7eef08f2b30"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "content-disposition@1.1.0",
+      "type": "library",
+      "name": "content-disposition",
+      "version": "1.1.0",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Create and parse Content-Disposition header",
+      "purl": "pkg:npm/content-disposition@1.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/content-disposition/-/content-disposition-1.1.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e634421fd67ff8344feeb92f63cdc1fb2188197f7a3987499b39e0aa7c364814b1a8214f774c36926dece626b0a465fc92b9f0486985d055b9361af41df6a2de"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "content-type@1.0.5",
+      "type": "library",
+      "name": "content-type",
+      "version": "1.0.5",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Create and parse HTTP Content-Type header",
+      "purl": "pkg:npm/content-type@1.0.5",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/content-type/-/content-type-1.0.5.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9d38ea7dc045122a4a7570afe180d05827e670b64a9bcd65745d29028a53bf2ac51956dc47a3ff54001de46ecdfb4b53afc42a894d2d15a743e852b836d27038"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "cookie@0.7.2",
+      "type": "library",
+      "name": "cookie",
+      "version": "0.7.2",
+      "scope": "required",
+      "author": "Roman Shtylman <shtylman@gmail.com>",
+      "description": "HTTP server cookie parsing and serialization",
+      "purl": "pkg:npm/cookie@0.7.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "ca48b95e72ae7fbe74979d2e193965b7a90a20b6389d0d5e34841ab685c40726797568272aa6e7aa64eb044e41e0dee5acc24a436cad58c8933b6a34bfa130ff"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "cookie-parser@1.4.7",
+      "type": "library",
+      "name": "cookie-parser",
+      "version": "1.4.7",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
+      "description": "Parse HTTP request cookies",
+      "purl": "pkg:npm/cookie-parser@1.4.7",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/cookie-parser/-/cookie-parser-1.4.7.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9c652f8179e8b4fdc1b2388b5f6ca96d09d6a0650f2087c740d664902ebaf27b6bcc65846555bbd070c4075aa734632270f8dee84b6d948833a39d584b03501b"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "cookie-signature@1.0.6",
+      "type": "library",
+      "name": "cookie-signature",
+      "version": "1.0.6",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@learnboost.com>",
+      "description": "Sign and unsign cookies",
+      "purl": "pkg:npm/cookie-signature@1.0.6",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/visionmedia/node-cookie-signature.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4000f395a1dcf22715f08eef6da257270a1df47598a7cb82a9fd716b839f36ed53ec9571408ad480e5ad1dd343b4f8b2c2615b892d76563a2d2172eb28cde8ad"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "cross-env@10.1.0",
+      "type": "library",
+      "name": "cross-env",
+      "version": "10.1.0",
+      "scope": "required",
+      "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com)",
+      "description": "Run scripts that set and use environment variables across platforms",
+      "purl": "pkg:npm/cross-env@10.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/cross-env/-/cross-env-10.1.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/kentcdodds/cross-env.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/kentcdodds/cross-env#readme"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/kentcdodds/cross-env/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "1ac628b209c00994c00dc984c8972d909228a808478edb70ed1b05ad5a093576ec596a9aaba626fbb9198eaea64b8e4ed238a3eafb6245ea6929012da96cba0f"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "depd@2.0.0",
+      "type": "library",
+      "name": "depd",
+      "version": "2.0.0",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Deprecate all the things",
+      "purl": "pkg:npm/depd@2.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/depd/-/depd-2.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "83b9c7e8fe9dc838a8268800006a6b1a90ad5489898693e4feba02cdd6f77c887ad7fb3f9cfb1f47aa27c8cc2408047f3a50b7c810b49444af52840402cb08af"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "ee-first@1.1.1",
+      "type": "library",
+      "name": "ee-first",
+      "version": "1.1.1",
+      "scope": "required",
+      "author": "Jonathan Ong",
+      "description": "return the first event in a set of ee/event pairs",
+      "purl": "pkg:npm/ee-first@1.1.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "58cc26f4b851528f9651a44dfaf46e113a86f3d22066985548d91d16079beac4bf1383ab0c837bb78f0201ec121d773a0bc95e7c3f0a29faf9bd8eb56eb425a3"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "encodeurl@2.0.0",
+      "type": "library",
+      "name": "encodeurl",
+      "version": "2.0.0",
+      "scope": "required",
+      "description": "Encode a URL to a percent-encoded form, excluding already-encoded sequences",
+      "purl": "pkg:npm/encodeurl@2.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4349fd1d18b89ba26e188575785966bc907b644571bbddc8accca232c182d25acc24c5b3460c7a586aaec9f4206556f7d6f8468179df98f34d5e6c673a4441ae"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "escape-html@1.0.3",
+      "type": "library",
+      "name": "escape-html",
+      "version": "1.0.3",
+      "scope": "required",
+      "description": "Escape string for use in HTML",
+      "purl": "pkg:npm/escape-html@1.0.3",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "3624aea59e0e7ae1b0afaf251887b29bf92c219309a1d506392099fc54a74f172b7a46efaab81d53194938ca628da299563009ad6ac6b3fe89cbc38cbb28fda3"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "etag@1.8.1",
+      "type": "library",
+      "name": "etag",
+      "version": "1.8.1",
+      "scope": "required",
+      "description": "Create simple HTTP ETags",
+      "purl": "pkg:npm/etag@1.8.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "6882f9171ee66b055adf4d1a976067104e2236fa35a844f12eb3c8fe8d392fbcfa828edf0b0d49e844266cae05989d804bb920545fca1195ae7c17dd0a531c3e"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "express@5.2.1",
+      "type": "library",
+      "name": "express",
+      "version": "5.2.1",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca>",
+      "description": "Fast, unopinionated, minimalist web framework",
+      "purl": "pkg:npm/express@5.2.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/express/-/express-5.2.1.tgz"
+        },
+        {
+          "type": "website",
+          "url": "https://expressjs.com/"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "8484b889d5966a2ebd35ecc8751b76c455687da1788fee8834ea4995538b0cef335c6a54544573218935d94522d89ce313358bdc8380c5c4ee6e0cfd3e8d325f"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "express-rate-limit@8.7.0",
+      "type": "library",
+      "name": "express-rate-limit",
+      "version": "8.7.0",
+      "scope": "required",
+      "author": "Nathan Friedly",
+      "description": "Basic IP rate-limiting middleware for Express. Use to limit repeated requests to public APIs and/or endpoints such as password reset.",
+      "purl": "pkg:npm/express-rate-limit@8.7.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-8.7.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/express-rate-limit/express-rate-limit.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/express-rate-limit/express-rate-limit"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "84ec15ed63b15df8d1a403350d22566435f1dc68699700fc21fc2ec2fa200fc8b5427920a2cc3f1f8e6ce199c50141c30213e3958f612c1bc984a986332636ea"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "cookie-signature@1.2.2",
+      "type": "library",
+      "name": "cookie-signature",
+      "version": "1.2.2",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@learnboost.com>",
+      "description": "Sign and unsign cookies",
+      "purl": "pkg:npm/cookie-signature@1.2.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.2.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/visionmedia/node-cookie-signature.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0fbeae53bdee9525eb0f5517178284d93331555c21b270a07c0c9383d93c3fa2866639572ab38b7b874940a2370718b9c237ac6681572561253560633d931b86"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "finalhandler@2.1.1",
+      "type": "library",
+      "name": "finalhandler",
+      "version": "2.1.1",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Node.js final http responder",
+      "purl": "pkg:npm/finalhandler@2.1.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/finalhandler/-/finalhandler-2.1.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4bc2a866045937e6b9acdc2a4f195965e3e34ffe1c9e6d11395ef42de7511d9d29f2ef5f4480f484951942990a2f3ae8f0b7e60bcb31db76d8ead54dc6ff2940"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "forwarded@0.2.0",
+      "type": "library",
+      "name": "forwarded",
+      "version": "0.2.0",
+      "scope": "required",
+      "description": "Parse HTTP X-Forwarded-For header",
+      "purl": "pkg:npm/forwarded@0.2.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "6ee446d1fa41b511d24c238049eea10f6e7cb44b9b16844b6f864d03a3713151cdc3680e7301e8f70c9a6e5ccccce039cfdc40f4bd4a36393f36de8c4fd698a3"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "fresh@2.0.0",
+      "type": "library",
+      "name": "fresh",
+      "version": "2.0.0",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
+      "description": "HTTP response freshness testing",
+      "purl": "pkg:npm/fresh@2.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/fresh/-/fresh-2.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "471fd6c9c67ad0739aa8b2808ba70744a288ef3c566c9df53219ed9adc0ca1a4de17b5c51fd861069f2f21368c89d7e58d143a7985822a46932beca45491cfd8"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "glob@13.0.6",
+      "type": "library",
+      "name": "glob",
+      "version": "13.0.6",
+      "scope": "required",
+      "author": "Isaac Z. Schlueter <i@izs.me> (https://blog.izs.me/)",
+      "description": "the most correct and second fastest glob implementation in JavaScript",
+      "purl": "pkg:npm/glob@13.0.6",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/glob/-/glob-13.0.6.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git@github.com:isaacs/node-glob.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5a3972ae89669bcb83a66fe8806c976576f567e09ad81f0d6c9c2a0558346b12bd19b05ea12ef2195eaf8d79d87469ba5f9de27a112ec716f288aa7c42637857"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BlueOak-1.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "helmet@8.3.0",
+      "type": "library",
+      "name": "helmet",
+      "version": "8.3.0",
+      "scope": "required",
+      "author": "Adam Baldwin <adam@npmjs.com> (https://evilpacket.net)",
+      "description": "help secure Express/Connect apps with various HTTP headers",
+      "purl": "pkg:npm/helmet@8.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/helmet/-/helmet-8.3.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/helmetjs/helmet.git"
+        },
+        {
+          "type": "website",
+          "url": "https://helmet.js.org/"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/helmetjs/helmet/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "420a626b0b374a6df402ff046a1eac8cc0996708e506ef84ebcae1a42581b2163595bd3d1ed2f08f91af897d0ec90227fae9544b4897d00c4de67ded2d9cf3d7"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "http-errors@2.0.1",
+      "type": "library",
+      "name": "http-errors",
+      "version": "2.0.1",
+      "scope": "required",
+      "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
+      "description": "Create HTTP error objects",
+      "purl": "pkg:npm/http-errors@2.0.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/http-errors/-/http-errors-2.0.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e056d17405fe6d2766a3801416e4b458d88fcfc36016dfabf138603569a5ae3423b7543b651f7ecd395c7b6f39f71e0a497af022c69e4ea0e82909ad3fca4b99"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "iconv-lite@0.7.3",
+      "type": "library",
+      "name": "iconv-lite",
+      "version": "0.7.3",
+      "scope": "required",
+      "author": "Alexander Shtuchkin <ashtuchkin@gmail.com>",
+      "description": "Convert character encodings in pure javascript.",
+      "purl": "pkg:npm/iconv-lite@0.7.3",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.7.3.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/pillarjs/iconv-lite.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/pillarjs/iconv-lite"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "20a5e9bc8ce39c2f574c051b54170c7c64b410f6885ed5babfecebf91469fa1a942c4a68d28c196b1eb0c91c0f3896d66f38d8b29430bac4ec7d5af489f878b9"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "inherits@2.0.4",
+      "type": "library",
+      "name": "inherits",
+      "version": "2.0.4",
+      "scope": "required",
+      "description": "Browser-friendly inheritance fully compatible with standard node.js inherits()",
+      "purl": "pkg:npm/inherits@2.0.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "93fbc6697e3f6256b75b3c8c0af4d039761e207bea38ab67a8176ecd31e9ce9419cc0b2428c859d8af849c189233dcc64a820578ca572b16b8758799210a9ec1"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "ip-address@10.7.0",
+      "type": "library",
+      "name": "ip-address",
+      "version": "10.7.0",
+      "scope": "required",
+      "author": "Beau Gunderson <beau@beaugunderson.com> (https://beaugunderson.com/)",
+      "description": "A library for parsing IPv4 and IPv6 IP addresses in node and the browser.",
+      "purl": "pkg:npm/ip-address@10.7.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/ip-address/-/ip-address-10.7.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/beaugunderson/ip-address.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "04616cc897799a95e9deb2ba8c87400cb360a4950ad639e3cef605f252be5720da6fd2409aa37460e28374fd7b1e580a6f6f9e84f80373c12d9d12db18200c84"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "ipaddr.js@1.9.1",
+      "type": "library",
+      "name": "ipaddr.js",
+      "version": "1.9.1",
+      "scope": "required",
+      "author": "whitequark <whitequark@whitequark.org>",
+      "description": "A library for manipulating IPv4 and IPv6 addresses in JavaScript.",
+      "purl": "pkg:npm/ipaddr.js@1.9.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "d0a23feb4ef1a31493a07ec68cdd457d26cba14d3e6ed4e2723b1049642587f859ca437c2a998c7fbb98c0f5b747e6a467a47fc35f199574870585e26143cede"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "is-promise@4.0.0",
+      "type": "library",
+      "name": "is-promise",
+      "version": "4.0.0",
+      "scope": "required",
+      "author": "ForbesLindesay",
+      "description": "Test whether an object looks like a promises-a+ promise",
+      "purl": "pkg:npm/is-promise@4.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/then/is-promise.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "86fa6823a928ae124c9de8f6f3975283a9eed7e7babb1b3bcc6dc16009b96f2a83b2024d5b0c7333acfa8998808104784c9df42660533b0a99530dd69721f701"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "lru-cache@11.5.2",
+      "type": "library",
+      "name": "lru-cache",
+      "version": "11.5.2",
+      "scope": "required",
+      "author": "Isaac Z. Schlueter <i@izs.me>",
+      "description": "A cache object that deletes the least-recently-used items.",
+      "purl": "pkg:npm/lru-cache@11.5.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/lru-cache/-/lru-cache-11.5.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+ssh://git@github.com/isaacs/node-lru-cache.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "e297ccd457f4c79d28d2d4306f9b9cc3f4733720f4fd824c13a215712b5a959b8c5b176ddec47786e4ad4edc73e0f526bd97d182ebc37a36acbd0da489f475d6"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BlueOak-1.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "media-typer@1.1.1",
+      "type": "library",
+      "name": "media-typer",
+      "version": "1.1.1",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Simple RFC 6838 media type parser and formatter",
+      "purl": "pkg:npm/media-typer@1.1.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/media-typer/-/media-typer-1.1.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "cb3df145a1b6d1cebf04ecef6280da1ad3e61ac72ced88af22d64412a7ba19bc0d7c7bb1bbd60d9af9c490ccca95d006638ffcd2945c41165212786aba4f57b9"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "merge-descriptors@2.0.0",
+      "type": "library",
+      "name": "merge-descriptors",
+      "version": "2.0.0",
+      "scope": "required",
+      "description": "Merge objects using their property descriptors",
+      "purl": "pkg:npm/merge-descriptors@2.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/merge-descriptors/-/merge-descriptors-2.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "4a7937d785796b214b869ddf914444b9be96b6305f3dd08f6352e7f3ff26ba7b8bba2621b000600555aca33006f8c58c6d512f71d7296e2f51ef0c36da5f50de"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "mime-db@1.54.0",
+      "type": "library",
+      "name": "mime-db",
+      "version": "1.54.0",
+      "scope": "required",
+      "description": "Media Type Database",
+      "purl": "pkg:npm/mime-db@1.54.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "694e4426e20dd960de982700a76bc505fa7f9b810085626750d492c348b1b3bfe45db77a3e0eb8126c0990d745841f1a5add6c1f60935eb2f1a3f880195de83d"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "mime-types@3.0.2",
+      "type": "library",
+      "name": "mime-types",
+      "version": "3.0.2",
+      "scope": "required",
+      "description": "The ultimate javascript content-type utility.",
+      "purl": "pkg:npm/mime-types@3.0.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/mime-types/-/mime-types-3.0.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "2db833764d21e23ba843d7c22975b86f2d1426a8fe9ce3ab23d309d6c4a3e2723c688d9ea35aa6bd01227b8543d6096c4b6e749f5e4bb16b18b42ba0892b52e4"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "minipass@7.1.3",
+      "type": "library",
+      "name": "minipass",
+      "version": "7.1.3",
+      "scope": "required",
+      "author": "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)",
+      "description": "minimal implementation of a PassThrough stream",
+      "purl": "pkg:npm/minipass@7.1.3",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/minipass/-/minipass-7.1.3.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "b44047a839c8a0cff5ad7304d738246bd83a43695ca029311cbb9cece0c9e41c5b3f977873667970682d5c092ee7ddb4d02c7b762b874ce61f4810fc9fa9a6f0"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BlueOak-1.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "negotiator@1.1.0",
+      "type": "library",
+      "name": "negotiator",
+      "version": "1.1.0",
+      "scope": "required",
+      "description": "HTTP content negotiation",
+      "purl": "pkg:npm/negotiator@1.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/negotiator/-/negotiator-1.1.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "34c3c144c2608901e36ddf29846dd579b771e246751f5db5adb97922432a78eb1a869b41f412a8fddee8277cd35ea4e06a09f66d694d497921d10506337d5162"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "next@16.3.4",
+      "type": "library",
+      "name": "next",
+      "version": "16.3.4",
+      "scope": "required",
+      "description": "The React Framework",
+      "purl": "pkg:npm/next@16.3.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/next/-/next-16.3.4.tgz"
+        },
+        {
+          "type": "website",
+          "url": "https://nextjs.org"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "fd9b5fe827911fe7a311752b62da88e20912eba785207b92c2a8bad1181ca562a8771159c76fdda9508c281c082df0075d0f85d5bd6f02e7608f79a7c6ab6820"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "node-addon-api@8.9.2",
+      "type": "library",
+      "name": "node-addon-api",
+      "version": "8.9.2",
+      "scope": "required",
+      "description": "Node.js API (Node-API)",
+      "purl": "pkg:npm/node-addon-api@8.9.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/node-addon-api/-/node-addon-api-8.9.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/nodejs/node-addon-api.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/nodejs/node-addon-api"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/nodejs/node-addon-api/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5628cb5db8b750008debd2342555c9b17e2d8c00a336840382fda04c5eacc76c16122f2d912836797f29e60488162f33dbe0cbde81e663a3b229c7b7f120e896"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "node-gyp-build@4.8.4",
+      "type": "library",
+      "name": "node-gyp-build",
+      "version": "4.8.4",
+      "scope": "required",
+      "author": "Mathias Buus (@mafintosh)",
+      "description": "Build tool and bindings loader for node-gyp that supports prebuilds",
+      "purl": "pkg:npm/node-gyp-build@4.8.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.8.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/prebuild/node-gyp-build.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/prebuild/node-gyp-build"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/prebuild/node-gyp-build/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "2c0e198f096751b947560ab4a01177265ffa87f36fb397f304bc1d105e27bb19c576c7da8dd7b859fc6d26bdc26a21fe17a7b070807fab88d0e14ccfca277e09"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "node-pg-migrate@9.0.0",
+      "type": "library",
+      "name": "node-pg-migrate",
+      "version": "9.0.0",
+      "scope": "required",
+      "author": "Theo Ephraim",
+      "description": "PostgreSQL database migration management tool for node.js",
+      "purl": "pkg:npm/node-pg-migrate@9.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/node-pg-migrate/-/node-pg-migrate-9.0.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/salsita/node-pg-migrate.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/salsita/node-pg-migrate"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/salsita/node-pg-migrate/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "969e7e519c7528a80ecffcb487a05818fb89e7056565382204f197086a17e81b3a5fd2ed88886b238576c96e263f09c905fa6d56ad0ab4b42d5c772810a3b28a"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "nodemailer@10.0.4",
+      "type": "library",
+      "name": "nodemailer",
+      "version": "10.0.4",
+      "scope": "required",
+      "author": "Andris Reinman",
+      "description": "Easy as cake e-mail sending from your Node.js applications",
+      "purl": "pkg:npm/nodemailer@10.0.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/nodemailer/-/nodemailer-10.0.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/nodemailer/nodemailer.git"
+        },
+        {
+          "type": "website",
+          "url": "https://nodemailer.com/"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/nodemailer/nodemailer/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "8618d5be0f02c8342c60e069e7e9c63d101e1e1245bbba7e1096251dbaced94f24a8810f1489139fabae9a799d1fb99707f96dd1631c0d902da402d3caf56623"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT-0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "on-finished@2.4.1",
+      "type": "library",
+      "name": "on-finished",
+      "version": "2.4.1",
+      "scope": "required",
+      "description": "Execute a callback when a request closes, finishes, or errors",
+      "purl": "pkg:npm/on-finished@2.4.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/on-finished/-/on-finished-2.4.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a15973920dc4340842936cddbfb209c1dfd0503e33d91c51c2991c198f29b0255c09864dab8c189d55802c733e6ebb6e26378f5a2605fc2966b83afc0a1e7e92"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "parseurl@1.3.3",
+      "type": "library",
+      "name": "parseurl",
+      "version": "1.3.3",
+      "scope": "required",
+      "description": "parse a url with memoization",
+      "purl": "pkg:npm/parseurl@1.3.3",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0a2c9e3b1153fc96723799b4cfd3df5f0e1208127a4b2833d43a65d30aa39610c418604fd469ec51510bd29eb78681b57dc8f77c7ca75e2f4d60ee2758e2fea9"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "path-scurry@2.0.2",
+      "type": "library",
+      "name": "path-scurry",
+      "version": "2.0.2",
+      "scope": "required",
+      "author": "Isaac Z. Schlueter <i@izs.me> (https://blog.izs.me)",
+      "description": "walk paths fast and efficiently",
+      "purl": "pkg:npm/path-scurry@2.0.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/path-scurry/-/path-scurry-2.0.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/isaacs/path-scurry"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "dcefe2555b0900fb0e9e9c1621e0fe77acffecf9aa029c9078f52d0a77636ad8fff48e4bca51efb79aa5b856814f7239877af57a37d1d39e9cf850aff8d9cd5e"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "BlueOak-1.0.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "path-to-regexp@8.4.2",
+      "type": "library",
+      "name": "path-to-regexp",
+      "version": "8.4.2",
+      "scope": "required",
+      "description": "Express style path to RegExp utility",
+      "purl": "pkg:npm/path-to-regexp@8.4.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-8.4.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/pillarjs/path-to-regexp.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a9172e21d3faf4d3e6e2a6c008af9a0e8808e42043322d6329ed2bcb9ad2409cfc2552ec0bb8d5f17a622631912cba25dcdf91e6284661cacf2d39e8ea901d04"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "pg@8.23.0",
+      "type": "library",
+      "name": "pg",
+      "version": "8.23.0",
+      "scope": "required",
+      "author": "Brian Carlson <brian.m.carlson@gmail.com>",
+      "description": "PostgreSQL client - pure javascript & libpq with the same API",
+      "purl": "pkg:npm/pg@8.23.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/pg/-/pg-8.23.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/brianc/node-postgres.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/brianc/node-postgres"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "229d844029e0a3024b18e7c2c241613d753bfe58e5867e91c659b2e1761f2f663ebf244ce7dfbcb91db1a9158a75899b5e6c4214e0262b106e49409d177e2a2e"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "pg-cloudflare@1.4.0",
+      "type": "library",
+      "name": "pg-cloudflare",
+      "version": "1.4.0",
+      "scope": "optional",
+      "description": "A socket implementation that can run on Cloudflare Workers using native TCP connections.",
+      "purl": "pkg:npm/pg-cloudflare@1.4.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/pg-cloudflare/-/pg-cloudflare-1.4.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/brianc/node-postgres.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "568ef3ffaaeb418c69351ca5a784e5a1bd9e9736e1f8dfcc3906f1155582c52ee8131ea3179dc64c91712b6596a4ab814649a28a7e0cb7ec687c50e3c74f51d0"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "pg-connection-string@2.14.0",
+      "type": "library",
+      "name": "pg-connection-string",
+      "version": "2.14.0",
+      "scope": "required",
+      "author": "Blaine Bublitz <blaine@iceddev.com> (http://iceddev.com/)",
+      "description": "Functions for dealing with a PostgreSQL connection string",
+      "purl": "pkg:npm/pg-connection-string@2.14.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/pg-connection-string/-/pg-connection-string-2.14.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/brianc/node-postgres.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/brianc/node-postgres/tree/master/packages/pg-connection-string"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/brianc/node-postgres/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "5f058319c2d11825c047c17f00ce5b1bb43e0375a6dace907848e538a64b947dd461c82e8aa0962b259755a8394cb4c88d1ee8389518f247000da66058fc8b7a"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "pg-pool@3.14.0",
+      "type": "library",
+      "name": "pg-pool",
+      "version": "3.14.0",
+      "scope": "required",
+      "author": "Brian M. Carlson",
+      "description": "Connection pool for node-postgres",
+      "purl": "pkg:npm/pg-pool@3.14.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/pg-pool/-/pg-pool-3.14.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git://github.com/brianc/node-postgres.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/brianc/node-postgres/tree/master/packages/pg-pool#readme"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/brianc/node-postgres/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "80ab4f9057503d4dc392ca2854b8bd2ec8d9c6bb015192296beeda571f8b579a4d8742b33f86657ae776a68f82a27af16ee5c6049e877deafa85d829201a416b"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "pgpass@1.0.5",
+      "type": "library",
+      "name": "pgpass",
+      "version": "1.0.5",
+      "scope": "required",
+      "author": "Hannes Hörl <hannes.hoerl+pgpass@snowreporter.com>",
+      "description": "Module for reading .pgpass",
+      "purl": "pkg:npm/pgpass@1.0.5",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/pgpass/-/pgpass-1.0.5.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/hoegaarden/pgpass.git"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "15d5bdaff8d066149ea21b35677b08d72c4540d16f31c9e67ee8f85813144f13ab0322cc693704d5a00c0624e56cc35a5ef04242e562d11ee177cb9d0d23fbba"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "proxy-addr@2.0.7",
+      "type": "library",
+      "name": "proxy-addr",
+      "version": "2.0.7",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Determine address of proxied request",
+      "purl": "pkg:npm/proxy-addr@2.0.7",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "96542c30b4940d43d3e388ddad4fcedfbaa59e27e2b433fe670ae699972848ac8b2afb59c69c95d27dbf6c3fcde2d040019fe024475953b28cadaa0ad7e5d802"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "range-parser@1.3.0",
+      "type": "library",
+      "name": "range-parser",
+      "version": "1.3.0",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca> (http://tjholowaychuk.com)",
+      "description": "Range header field string parser",
+      "purl": "pkg:npm/range-parser@1.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/range-parser/-/range-parser-1.3.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "85e9369854293ee2381350412ab4ada3e054ddedf1e31b9aaec6e2c2bdfe95fee9e388eebc5315d171564003f7c54caa5c0e11ad72c8a1a49419b4add39e9933"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "raw-body@3.0.2",
+      "type": "library",
+      "name": "raw-body",
+      "version": "3.0.2",
+      "scope": "required",
+      "author": "Jonathan Ong <me@jongleberry.com> (http://jongleberry.com)",
+      "description": "Get and validate the raw body of a readable stream.",
+      "purl": "pkg:npm/raw-body@3.0.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/raw-body/-/raw-body-3.0.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "2b9cd08c3965c5691fed9e7125d574fc1d164cdab1eafc46ef4cc9138374901b382e8be6118589cd01b10bd6d2f5100abb76e0338d25adde73a0b275d8c43904"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "react@19.3.0",
+      "type": "library",
+      "name": "react",
+      "version": "19.3.0",
+      "scope": "required",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "purl": "pkg:npm/react@19.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/react/-/react-19.3.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/react/react.git"
+        },
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "13c2d471bb415addb46db9766281dfc7864305dc554df38ab42667f5c0d227897afe7ba8029729201723e3bb76c19a155fc836647b8c1db892860091d53e52a2"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "react-dom@19.3.0",
+      "type": "library",
+      "name": "react-dom",
+      "version": "19.3.0",
+      "scope": "required",
+      "description": "React package for working with the DOM.",
+      "purl": "pkg:npm/react-dom@19.3.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/react-dom/-/react-dom-19.3.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/react/react.git"
+        },
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/react/react/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "24393c76089fe753a31680c4ef4f8e4fd202c98afeebd1e59a284dc29d7e36c7db9dadede6c22209af59264b43990e3fd5bfeb9f6ea1200476b985c332be6bd1"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "router@2.2.0",
+      "type": "library",
+      "name": "router",
+      "version": "2.2.0",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Simple middleware-style router",
+      "purl": "pkg:npm/router@2.2.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/router/-/router-2.2.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9cb4eb50a9b653288beeb9616a9bbf665e3917036091919a0a965b2076a30d883094908eccb4a4f9c20f027b04a95f79e468c82c99ca6dd402d6754fcfe80061"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "safer-buffer@2.1.2",
+      "type": "library",
+      "name": "safer-buffer",
+      "version": "2.1.2",
+      "scope": "required",
+      "author": "Nikita Skovoroda",
+      "description": "Modern Buffer API polyfill without footguns",
+      "purl": "pkg:npm/safer-buffer@2.1.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/ChALkeR/safer-buffer.git"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/ChALkeR/safer-buffer/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "619a372bcd920fb462ca2d04d4440fa232f3ee4a5ea6749023d2323db1c78355d75debdbe5d248eeda72376003c467106c71bbbdcc911e4d1c6f0a9c42b894b6"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "scheduler@0.28.0",
+      "type": "library",
+      "name": "scheduler",
+      "version": "0.28.0",
+      "scope": "required",
+      "description": "Cooperative scheduler for the browser environment.",
+      "purl": "pkg:npm/scheduler@0.28.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/react/react.git"
+        },
+        {
+          "type": "website",
+          "url": "https://react.dev/"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/react/react/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "8eea2b7c2988908c3cb53fa9e415d29ba3c98d017fc9c11898acb3511088b7f45a64884bf8fba56d0f58bb6cf51dd3890dda834e5c40d7ec4a0661d726c73303"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "send@1.2.1",
+      "type": "library",
+      "name": "send",
+      "version": "1.2.1",
+      "scope": "required",
+      "author": "TJ Holowaychuk <tj@vision-media.ca>",
+      "description": "Better streaming static file server with Range and conditional-GET support",
+      "purl": "pkg:npm/send@1.2.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/send/-/send-1.2.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "d609d97fb0c572821c6a34e34f08f0b838f3bb3e0f3dc6364ad28f96c180435f981f6d08455ac169749699d8e8c1327abbc45cd353e860e1875df3f599871935"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "serve-static@2.2.1",
+      "type": "library",
+      "name": "serve-static",
+      "version": "2.2.1",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Serve static files",
+      "purl": "pkg:npm/serve-static@2.2.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/serve-static/-/serve-static-2.2.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "c515c19f4a4fa904d54220bcc3242b2acd8c3a55f6e334343ce19a8f492e96dbe8382b2d050339caf3a1015494c0e32342d4efb0f5a83421df3c6c1a6902614f"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "setprototypeof@1.2.0",
+      "type": "library",
+      "name": "setprototypeof",
+      "version": "1.2.0",
+      "scope": "required",
+      "author": "Wes Todd",
+      "description": "A small polyfill for Object.setprototypeof",
+      "purl": "pkg:npm/setprototypeof@1.2.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/setprototypeof/-/setprototypeof-1.2.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/wesleytodd/setprototypeof.git"
+        },
+        {
+          "type": "website",
+          "url": "https://github.com/wesleytodd/setprototypeof"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "https://github.com/wesleytodd/setprototypeof/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "1392c35fb5aba7ce4a8a5e5b859bf8ea3f2339e6e82aae4932660cde05467461fcc45a4f59750cb0dae53830ab928c4c11e362fd7648c2e46f6385cdc18309a7"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "sharp@0.35.4",
+      "type": "library",
+      "name": "sharp",
+      "version": "0.35.4",
+      "scope": "optional",
+      "author": "Lovell Fuller <npm@lovell.info>",
+      "description": "High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP, GIF, AVIF and TIFF images",
+      "purl": "pkg:npm/sharp@0.35.4",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/sharp/-/sharp-0.35.4.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "git+https://github.com/lovell/sharp.git"
+        },
+        {
+          "type": "website",
+          "url": "https://sharp.pixelplumbing.com"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "9fefbc5d6723fa308eaf620e97b87c2db2a71810d8e1a3db9a9acc38d04d15d9f42265eaa4656fe739620ecd15f476e66c240ba5bba8d9e8fdac0a0e413bcc0c"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "Apache-2.0"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "split2@4.2.0",
+      "type": "library",
+      "name": "split2",
+      "version": "4.2.0",
+      "scope": "required",
+      "author": "Matteo Collina <hello@matteocollina.com>",
+      "description": "split a Text Stream into a Line Stream, using Stream 3",
+      "purl": "pkg:npm/split2@4.2.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/split2/-/split2-4.2.0.tgz"
+        },
+        {
+          "type": "vcs",
+          "url": "https://github.com/mcollina/split2.git"
+        },
+        {
+          "type": "issue-tracker",
+          "url": "http://github.com/mcollina/split2/issues"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "51c8dc24e5a49eb36417a3cb5fcdea70733a28781528d915eb663c6b9b980d5bfdc9d19057000730aa877498ded554d6a658c6d1662908386b09d00e607e135a"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "ISC"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "statuses@2.0.2",
+      "type": "library",
+      "name": "statuses",
+      "version": "2.0.2",
+      "scope": "required",
+      "description": "HTTP status utility",
+      "purl": "pkg:npm/statuses@2.0.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/statuses/-/statuses-2.0.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "0ef132e795770c1eee927468fb888e193e5f3f5b2547cc10a2155d9278a064f32932cb5a289416870898040089137525da94e70138a18416274616501c606247"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "styled-jsx@5.1.6",
+      "type": "library",
+      "name": "styled-jsx",
+      "version": "5.1.6",
+      "scope": "required",
+      "description": "Full CSS support for JSX without compromises",
+      "purl": "pkg:npm/styled-jsx@5.1.6",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/styled-jsx/-/styled-jsx-5.1.6.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a925720d378ca2d76f418a0758b346c111491c2fa2f99bdd051628b0e1600be5a0d6fc787eb376fd11bf340ed262aaaf28d2dfdfd3f62d2440da9bba9f45d864"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "toidentifier@1.0.1",
+      "type": "library",
+      "name": "toidentifier",
+      "version": "1.0.1",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Convert a string of words to a JavaScript identifier",
+      "purl": "pkg:npm/toidentifier@1.0.1",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a39b123ca12483f0c840d987e37574fee7ab2eba7355e764521f2d18dbda797a5fa6ec2329e9e54a8c7fd8efc14e5654b447be246eece58844cfad3c3e500744"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "type-is@2.1.0",
+      "type": "library",
+      "name": "type-is",
+      "version": "2.1.0",
+      "scope": "required",
+      "description": "Infer the content-type of a request.",
+      "purl": "pkg:npm/type-is@2.1.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/type-is/-/type-is-2.1.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "7da607c346a705b73f916177cc54c49f14853801945fd1856ce06d86f0dd2ec22512858e14eb52d3380289063022c90bf6219764bde40170fc3a86781a63004c"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "unpipe@1.0.0",
+      "type": "library",
+      "name": "unpipe",
+      "version": "1.0.0",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Unpipe a stream from all destinations",
+      "purl": "pkg:npm/unpipe@1.0.0",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/unpipe/-/unpipe-1.0.0.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "a63cb66d8852b2e7f05a52b03dcfa5ddc37bfb0b8994aeaecf461d2443a54036e5ea3a3f6253e2e266fc6a0524542f0117b57c36ecdec8f36a464b00de1ced29"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "bom-ref": "vary@1.1.2",
+      "type": "library",
+      "name": "vary",
+      "version": "1.1.2",
+      "scope": "required",
+      "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
+      "description": "Manipulate the HTTP Vary header",
+      "purl": "pkg:npm/vary@1.1.2",
+      "properties": [],
+      "externalReferences": [
+        {
+          "type": "distribution",
+          "url": "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
+        }
+      ],
+      "hashes": [
+        {
+          "alg": "SHA-512",
+          "content": "04d19b58b7ddd1e50f69b8645d4566d23f2ebaf444c93879a2f45afddca8c3f06a01b649c82fb97d4f88cd03b39802b362a6110084a8461750af778867f3d7aa"
+        }
+      ],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "ref": "securewallet@0.1.0",
+      "dependsOn": [
+        "@securewallet/api@0.1.0",
+        "@securewallet/web@0.1.0"
+      ]
+    },
+    {
+      "ref": "@securewallet/api@0.1.0",
+      "dependsOn": [
+        "argon2@0.45.1",
+        "cookie-parser@1.4.7",
+        "express@5.2.1",
+        "express-rate-limit@8.7.0",
+        "helmet@8.3.0",
+        "node-pg-migrate@9.0.0",
+        "nodemailer@10.0.4",
+        "pg@8.23.0"
+      ]
+    },
+    {
+      "ref": "@securewallet/web@0.1.0",
+      "dependsOn": [
+        "@fontsource/public-sans@5.3.0",
+        "next@16.3.4",
+        "react@19.3.0",
+        "react-dom@19.3.0"
+      ]
+    },
+    {
+      "ref": "@epic-web/invariant@1.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "@fontsource/public-sans@5.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "@img/colour@1.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "@img/sharp-win32-x64@0.35.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "@next/env@16.3.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "@next/swc-win32-x64-msvc@16.3.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "@phc/format@1.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "@swc/helpers@0.5.23",
+      "dependsOn": []
+    },
+    {
+      "ref": "accepts@2.0.0",
+      "dependsOn": [
+        "mime-types@3.0.2",
+        "negotiator@1.1.0"
+      ]
+    },
+    {
+      "ref": "argon2@0.45.1",
+      "dependsOn": [
+        "@phc/format@1.0.0",
+        "cross-env@10.1.0",
+        "node-addon-api@8.9.2",
+        "node-gyp-build@4.8.4"
+      ]
+    },
+    {
+      "ref": "body-parser@2.3.0",
+      "dependsOn": [
+        "bytes@3.1.2",
+        "content-type@2.1.0",
+        "http-errors@2.0.1",
+        "iconv-lite@0.7.3",
+        "on-finished@2.4.1",
+        "raw-body@3.0.2",
+        "type-is@2.1.0"
+      ]
+    },
+    {
+      "ref": "content-type@2.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "bytes@3.1.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "client-only@0.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "content-disposition@1.1.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "content-type@1.0.5",
+      "dependsOn": []
+    },
+    {
+      "ref": "cookie@0.7.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "cookie-parser@1.4.7",
+      "dependsOn": [
+        "cookie@0.7.2",
+        "cookie-signature@1.0.6"
+      ]
+    },
+    {
+      "ref": "cookie-signature@1.0.6",
+      "dependsOn": []
+    },
+    {
+      "ref": "cross-env@10.1.0",
+      "dependsOn": [
+        "@epic-web/invariant@1.0.0"
+      ]
+    },
+    {
+      "ref": "depd@2.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "ee-first@1.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "encodeurl@2.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "escape-html@1.0.3",
+      "dependsOn": []
+    },
+    {
+      "ref": "etag@1.8.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "express@5.2.1",
+      "dependsOn": [
+        "accepts@2.0.0",
+        "body-parser@2.3.0",
+        "content-disposition@1.1.0",
+        "content-type@1.0.5",
+        "cookie@0.7.2",
+        "cookie-signature@1.2.2",
+        "depd@2.0.0",
+        "encodeurl@2.0.0",
+        "escape-html@1.0.3",
+        "etag@1.8.1",
+        "finalhandler@2.1.1",
+        "fresh@2.0.0",
+        "http-errors@2.0.1",
+        "merge-descriptors@2.0.0",
+        "mime-types@3.0.2",
+        "on-finished@2.4.1",
+        "parseurl@1.3.3",
+        "proxy-addr@2.0.7",
+        "range-parser@1.3.0",
+        "router@2.2.0",
+        "send@1.2.1",
+        "serve-static@2.2.1",
+        "statuses@2.0.2",
+        "type-is@2.1.0",
+        "vary@1.1.2"
+      ]
+    },
+    {
+      "ref": "express-rate-limit@8.7.0",
+      "dependsOn": [
+        "express@5.2.1",
+        "ip-address@10.7.0"
+      ]
+    },
+    {
+      "ref": "cookie-signature@1.2.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "finalhandler@2.1.1",
+      "dependsOn": [
+        "encodeurl@2.0.0",
+        "escape-html@1.0.3",
+        "on-finished@2.4.1",
+        "parseurl@1.3.3",
+        "statuses@2.0.2"
+      ]
+    },
+    {
+      "ref": "forwarded@0.2.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "fresh@2.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "glob@13.0.6",
+      "dependsOn": [
+        "minipass@7.1.3",
+        "path-scurry@2.0.2"
+      ]
+    },
+    {
+      "ref": "helmet@8.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "http-errors@2.0.1",
+      "dependsOn": [
+        "depd@2.0.0",
+        "inherits@2.0.4",
+        "setprototypeof@1.2.0",
+        "statuses@2.0.2",
+        "toidentifier@1.0.1"
+      ]
+    },
+    {
+      "ref": "iconv-lite@0.7.3",
+      "dependsOn": [
+        "safer-buffer@2.1.2"
+      ]
+    },
+    {
+      "ref": "inherits@2.0.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "ip-address@10.7.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "ipaddr.js@1.9.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "is-promise@4.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "lru-cache@11.5.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "media-typer@1.1.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "merge-descriptors@2.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "mime-db@1.54.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "mime-types@3.0.2",
+      "dependsOn": [
+        "mime-db@1.54.0"
+      ]
+    },
+    {
+      "ref": "minipass@7.1.3",
+      "dependsOn": []
+    },
+    {
+      "ref": "negotiator@1.1.0",
+      "dependsOn": [
+        "content-type@2.1.0"
+      ]
+    },
+    {
+      "ref": "next@16.3.4",
+      "dependsOn": [
+        "react@19.3.0",
+        "react-dom@19.3.0",
+        "@next/env@16.3.4",
+        "@swc/helpers@0.5.23",
+        "styled-jsx@5.1.6",
+        "sharp@0.35.4",
+        "@next/swc-win32-x64-msvc@16.3.4"
+      ]
+    },
+    {
+      "ref": "node-addon-api@8.9.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "node-gyp-build@4.8.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "node-pg-migrate@9.0.0",
+      "dependsOn": [
+        "pg@8.23.0",
+        "glob@13.0.6"
+      ]
+    },
+    {
+      "ref": "nodemailer@10.0.4",
+      "dependsOn": []
+    },
+    {
+      "ref": "on-finished@2.4.1",
+      "dependsOn": [
+        "ee-first@1.1.1"
+      ]
+    },
+    {
+      "ref": "parseurl@1.3.3",
+      "dependsOn": []
+    },
+    {
+      "ref": "path-scurry@2.0.2",
+      "dependsOn": [
+        "lru-cache@11.5.2",
+        "minipass@7.1.3"
+      ]
+    },
+    {
+      "ref": "path-to-regexp@8.4.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "pg@8.23.0",
+      "dependsOn": [
+        "pg-connection-string@2.14.0",
+        "pg-pool@3.14.0",
+        "pgpass@1.0.5",
+        "pg-cloudflare@1.4.0"
+      ]
+    },
+    {
+      "ref": "pg-cloudflare@1.4.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pg-connection-string@2.14.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "pg-pool@3.14.0",
+      "dependsOn": [
+        "pg@8.23.0"
+      ]
+    },
+    {
+      "ref": "pgpass@1.0.5",
+      "dependsOn": [
+        "split2@4.2.0"
+      ]
+    },
+    {
+      "ref": "proxy-addr@2.0.7",
+      "dependsOn": [
+        "forwarded@0.2.0",
+        "ipaddr.js@1.9.1"
+      ]
+    },
+    {
+      "ref": "range-parser@1.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "raw-body@3.0.2",
+      "dependsOn": [
+        "bytes@3.1.2",
+        "http-errors@2.0.1",
+        "iconv-lite@0.7.3",
+        "unpipe@1.0.0"
+      ]
+    },
+    {
+      "ref": "react@19.3.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "react-dom@19.3.0",
+      "dependsOn": [
+        "react@19.3.0",
+        "scheduler@0.28.0"
+      ]
+    },
+    {
+      "ref": "router@2.2.0",
+      "dependsOn": [
+        "depd@2.0.0",
+        "is-promise@4.0.0",
+        "parseurl@1.3.3",
+        "path-to-regexp@8.4.2"
+      ]
+    },
+    {
+      "ref": "safer-buffer@2.1.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "scheduler@0.28.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "send@1.2.1",
+      "dependsOn": [
+        "encodeurl@2.0.0",
+        "escape-html@1.0.3",
+        "etag@1.8.1",
+        "fresh@2.0.0",
+        "http-errors@2.0.1",
+        "mime-types@3.0.2",
+        "on-finished@2.4.1",
+        "range-parser@1.3.0",
+        "statuses@2.0.2"
+      ]
+    },
+    {
+      "ref": "serve-static@2.2.1",
+      "dependsOn": [
+        "encodeurl@2.0.0",
+        "escape-html@1.0.3",
+        "parseurl@1.3.3",
+        "send@1.2.1"
+      ]
+    },
+    {
+      "ref": "setprototypeof@1.2.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "sharp@0.35.4",
+      "dependsOn": [
+        "@img/colour@1.1.0",
+        "@img/sharp-win32-x64@0.35.4"
+      ]
+    },
+    {
+      "ref": "split2@4.2.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "statuses@2.0.2",
+      "dependsOn": []
+    },
+    {
+      "ref": "styled-jsx@5.1.6",
+      "dependsOn": [
+        "react@19.3.0",
+        "client-only@0.0.1"
+      ]
+    },
+    {
+      "ref": "toidentifier@1.0.1",
+      "dependsOn": []
+    },
+    {
+      "ref": "type-is@2.1.0",
+      "dependsOn": [
+        "content-type@2.1.0",
+        "media-typer@1.1.1",
+        "mime-types@3.0.2"
+      ]
+    },
+    {
+      "ref": "unpipe@1.0.0",
+      "dependsOn": []
+    },
+    {
+      "ref": "vary@1.1.2",
+      "dependsOn": []
+    }
+  ]
+}

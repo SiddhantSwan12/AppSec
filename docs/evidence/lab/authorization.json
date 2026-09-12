@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-09-12T08:27:51.195596+00:00",
+  "results": [
+    {
+      "name": "Anonymous cannot read Alice ticket",
+      "actor": "anonymous",
+      "expected_status": 401,
+      "actual_status": 401,
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "Alice can read her ticket",
+      "actor": "alice",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "Bob cannot read Alice ticket",
+      "actor": "bob",
+      "expected_status": 404,
+      "actual_status": 200,
+      "passed": false,
+      "problems": [
+        "Expected HTTP 404; received 200.",
+        "Expected response content was missing.",
+        "Denied response exposed protected content."
+      ]
+    },
+    {
+      "name": "Admin can handle Alice support ticket",
+      "actor": "admin",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "Anonymous cannot list users",
+      "actor": "anonymous",
+      "expected_status": 401,
+      "actual_status": 401,
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "Alice cannot list users",
+      "actor": "alice",
+      "expected_status": 403,
+      "actual_status": 200,
+      "passed": false,
+      "problems": [
+        "Expected HTTP 403; received 200.",
+        "Expected response content was missing.",
+        "Denied response exposed protected content."
+      ]
+    },
+    {
+      "name": "Bob cannot list users",
+      "actor": "bob",
+      "expected_status": 403,
+      "actual_status": 200,
+      "passed": false,
+      "problems": [
+        "Expected HTTP 403; received 200.",
+        "Expected response content was missing.",
+        "Denied response exposed protected content."
+      ]
+    },
+    {
+      "name": "Admin can list accounts without password hashes",
+      "actor": "admin",
+      "expected_status": 200,
+      "actual_status": 200,
+      "passed": true,
+      "problems": []
+    }
+  ],
+  "outcome": "failed"
+}

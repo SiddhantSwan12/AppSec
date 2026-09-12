@@ -1,0 +1,83 @@
+{
+  "base_url": "http://localhost:3000",
+  "origin": "http://localhost:3000",
+  "allow_non_loopback": false,
+  "password_env": "DEMO_PASSWORD",
+  "actors": {
+    "alice": "alice@example.test",
+    "bob": "bob@example.test",
+    "admin": "admin@example.test"
+  },
+  "cases": [
+    {
+      "name": "Anonymous cannot read Alice ticket",
+      "actor": "anonymous",
+      "path": "/api/v1/tickets/44444444-4444-4444-8444-444444444444",
+      "status": 401,
+      "absent_fields": ["ticket"],
+      "field": "error.message",
+      "nonempty": true
+    },
+    {
+      "name": "Alice can read her ticket",
+      "actor": "alice",
+      "path": "/api/v1/tickets/44444444-4444-4444-8444-444444444444",
+      "status": 200,
+      "field": "ticket.user_id",
+      "equals": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "name": "Bob cannot read Alice ticket",
+      "actor": "bob",
+      "path": "/api/v1/tickets/44444444-4444-4444-8444-444444444444",
+      "status": 404,
+      "absent_fields": ["ticket"],
+      "field": "error.message",
+      "nonempty": true
+    },
+    {
+      "name": "Admin can handle Alice support ticket",
+      "actor": "admin",
+      "path": "/api/v1/tickets/44444444-4444-4444-8444-444444444444",
+      "status": 200,
+      "field": "ticket.user_id",
+      "equals": "11111111-1111-4111-8111-111111111111"
+    },
+    {
+      "name": "Anonymous cannot list users",
+      "actor": "anonymous",
+      "path": "/api/v1/admin/users",
+      "status": 401,
+      "absent_fields": ["items"],
+      "field": "error.message",
+      "nonempty": true
+    },
+    {
+      "name": "Alice cannot list users",
+      "actor": "alice",
+      "path": "/api/v1/admin/users",
+      "status": 403,
+      "absent_fields": ["items"],
+      "field": "error.message",
+      "nonempty": true
+    },
+    {
+      "name": "Bob cannot list users",
+      "actor": "bob",
+      "path": "/api/v1/admin/users",
+      "status": 403,
+      "absent_fields": ["items"],
+      "field": "error.message",
+      "nonempty": true
+    },
+    {
+      "name": "Admin can list accounts without password hashes",
+      "actor": "admin",
+      "path": "/api/v1/admin/users",
+      "status": 200,
+      "field": "items",
+      "nonempty": true,
+      "forbidden_keys": ["password_hash", "token_hash"]
+    }
+  ]
+}

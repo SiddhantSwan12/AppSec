@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-09-12T08:04:55.055Z",
+  "runner": "docker semgrep/semgrep",
+  "detection": [
+    {
+      "rule": "sw-sql-string-interpolation",
+      "finding": "SW-03",
+      "hits": 2,
+      "detected": true
+    },
+    {
+      "rule": "sw-record-lookup-without-owner-predicate",
+      "finding": "SW-01",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-admin-route-missing-role-check",
+      "finding": "SW-02",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-html-response-interpolation",
+      "finding": "SW-04",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-writable-protected-attribute",
+      "finding": "SW-05",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-non-positive-amount-accepted",
+      "finding": "SW-06",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-conditional-row-lock",
+      "finding": "SW-07",
+      "hits": 1,
+      "detected": true
+    },
+    {
+      "rule": "sw-conditional-transaction-boundary",
+      "finding": "SW-07",
+      "hits": 4,
+      "detected": true
+    },
+    {
+      "rule": "sw-money-route-ignores-idempotency-key",
+      "finding": "SW-08",
+      "hits": 1,
+      "detected": true
+    }
+  ],
+  "secure_findings": [],
+  "outcome": "passed"
+}

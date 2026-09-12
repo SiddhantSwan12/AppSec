@@ -1,0 +1,10 @@
+node_modules
+.venv
+.next
+dist
+package-lock.json
+docs/evidence
+test-results
+playwright-report
+.impeccable
+Makefile

@@ -1,0 +1,626 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\playwright.config.ts",
+    "rootDir": "C:/Users/siddh/OneDrive/Documents/AppSSec/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/siddh/OneDrive/Documents/AppSSec/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "C:/Users/siddh/OneDrive/Documents/AppSSec/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "C:/Users/siddh/OneDrive/Documents/AppSSec/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "C:/Users/siddh/OneDrive/Documents/AppSSec/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidence/browser-tests.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:3000/login",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "headers.spec.ts",
+      "file": "headers.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "serves a nonce-based CSP that the application runs cleanly under",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:40.989Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "367f6b702648c3bae834-932613be6df9374a9413",
+          "file": "headers.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "blocks the inline handler that a stored-XSS payload would rely on",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 873,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:45.625Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "367f6b702648c3bae834-e220566b01f3959c76bd",
+          "file": "headers.spec.ts",
+          "line": 52,
+          "column": 1
+        },
+        {
+          "title": "serves a nonce-based CSP that the application runs cleanly under",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2360,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:01.523Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "367f6b702648c3bae834-b0f1fa29cb754127c902",
+          "file": "headers.spec.ts",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "blocks the inline handler that a stored-XSS payload would rely on",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 816,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:04.045Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "367f6b702648c3bae834-58d6994f5329e3ac4a00",
+          "file": "headers.spec.ts",
+          "line": 52,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "hydration.spec.ts",
+      "file": "hydration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "hydration survives none",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1492,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:46.524Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "411cffca1131c6a1c771-7b643b4c4b4c45fafa52",
+          "file": "hydration.spec.ts",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "hydration survives extension-body",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "fail",
+                  "location": {
+                    "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                    "line": 21,
+                    "column": 45
+                  }
+                }
+              ],
+              "expectedStatus": "failed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1173,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts:55:22",
+                    "location": {
+                      "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                      "column": 22,
+                      "line": 55
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 53 |\u001b[39m       () \u001b[33m=>\u001b[39m (window \u001b[36mas\u001b[39m unknown \u001b[36mas\u001b[39m \u001b[33mRecord\u001b[39m\u001b[33m<\u001b[39m\u001b[33mstring\u001b[39m\u001b[33m,\u001b[39m unknown\u001b[33m>\u001b[39m)\u001b[33m.\u001b[39m__swClientState\u001b[33m,\u001b[39m\n \u001b[90m 54 |\u001b[39m     )\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 55 |\u001b[39m     expect(survived)\u001b[33m.\u001b[39mtoBe(\u001b[32m\"kept\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 56 |\u001b[39m     expect(hydrationWarnings)\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m 57 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 58 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                        "column": 22,
+                        "line": 55
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  53 |       () => (window as unknown as Record<string, unknown>).__swClientState,\n  54 |     );\n> 55 |     expect(survived).toBe(\"kept\");\n     |                      ^\n  56 |     expect(hydrationWarnings).toEqual([]);\n  57 |   });\n  58 | }\n    at C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts:55:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:48.024Z",
+                  "annotations": [
+                    {
+                      "type": "fail",
+                      "location": {
+                        "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                        "line": 21,
+                        "column": 45
+                      }
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\test-results\\hydration-hydration-survives-extension-body-desktop\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                    "column": 22,
+                    "line": 55
+                  }
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "411cffca1131c6a1c771-d043d815975d2175a065",
+          "file": "hydration.spec.ts",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "hydration survives none",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1667,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:04.875Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "411cffca1131c6a1c771-754630a9c0346c152979",
+          "file": "hydration.spec.ts",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "hydration survives extension-body",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "fail",
+                  "location": {
+                    "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                    "line": 21,
+                    "column": 45
+                  }
+                }
+              ],
+              "expectedStatus": "failed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1391,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n    at C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts:55:22",
+                    "location": {
+                      "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                      "column": 22,
+                      "line": 55
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 53 |\u001b[39m       () \u001b[33m=>\u001b[39m (window \u001b[36mas\u001b[39m unknown \u001b[36mas\u001b[39m \u001b[33mRecord\u001b[39m\u001b[33m<\u001b[39m\u001b[33mstring\u001b[39m\u001b[33m,\u001b[39m unknown\u001b[33m>\u001b[39m)\u001b[33m.\u001b[39m__swClientState\u001b[33m,\u001b[39m\n \u001b[90m 54 |\u001b[39m     )\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 55 |\u001b[39m     expect(survived)\u001b[33m.\u001b[39mtoBe(\u001b[32m\"kept\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 56 |\u001b[39m     expect(hydrationWarnings)\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m 57 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 58 |\u001b[39m }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                        "column": 22,
+                        "line": 55
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"kept\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  53 |       () => (window as unknown as Record<string, unknown>).__swClientState,\n  54 |     );\n> 55 |     expect(survived).toBe(\"kept\");\n     |                      ^\n  56 |     expect(hydrationWarnings).toEqual([]);\n  57 |   });\n  58 | }\n    at C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts:55:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:06.550Z",
+                  "annotations": [
+                    {
+                      "type": "fail",
+                      "location": {
+                        "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                        "line": 21,
+                        "column": 45
+                      }
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\test-results\\hydration-hydration-survives-extension-body-mobile\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\siddh\\OneDrive\\Documents\\AppSSec\\tests\\browser\\hydration.spec.ts",
+                    "column": 22,
+                    "line": 55
+                  }
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "411cffca1131c6a1c771-f8187862e991c6c2cde8",
+          "file": "hydration.spec.ts",
+          "line": 15,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "wallet.spec.ts",
+      "file": "wallet.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "registration and password reset through the local email catcher",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4823,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:49.213Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27e87c8ff6887d69f80e-c250761fa6a74aa125ab",
+          "file": "wallet.spec.ts",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "login, transfer, history, plain-text support, and logout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4961,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:25:54.043Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27e87c8ff6887d69f80e-4f83a5b47ddc166a980e",
+          "file": "wallet.spec.ts",
+          "line": 60,
+          "column": 1
+        },
+        {
+          "title": "registration and password reset through the local email catcher",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4653,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:07.975Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27e87c8ff6887d69f80e-6a40bacaec1f3ef06993",
+          "file": "wallet.spec.ts",
+          "line": 2,
+          "column": 1
+        },
+        {
+          "title": "login, transfer, history, plain-text support, and logout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5392,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-12T08:26:12.641Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "27e87c8ff6887d69f80e-b3855773b52f2b4af34f",
+          "file": "wallet.spec.ts",
+          "line": 60,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-12T08:25:39.064Z",
+    "duration": 42258.579,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

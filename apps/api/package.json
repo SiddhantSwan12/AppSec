@@ -1,0 +1,27 @@
+{
+  "name": "@securewallet/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file=../../.env src/server.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/server.js",
+    "db:migrate": "tsx --env-file=../../.env src/migrate.ts",
+    "db:seed": "tsx --env-file=../../.env src/seed.ts",
+    "test": "vitest run",
+    "lab": "tsx --env-file=../../.env src/lab/server.ts"
+  },
+  "dependencies": {
+    "argon2": "^0.45.1",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "node-pg-migrate": "^9.0.0",
+    "nodemailer": "^10.0.4",
+    "pg": "^8.23.0",
+    "zod": "^4.6.2"
+  }
+}

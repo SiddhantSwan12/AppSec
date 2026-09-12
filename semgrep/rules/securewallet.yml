@@ -1,0 +1,233 @@
+# Custom Semgrep rules for SecureWallet.
+#
+# Each rule encodes one finding from docs/FINDINGS.md as a pattern, so the class
+# of bug is caught automatically rather than re-discovered by hand. The
+# intentionally vulnerable lab doubles as a labelled corpus: every rule must
+# fire there and stay silent on the secure application. scripts/semgrep-verify.mjs
+# enforces both halves.
+rules:
+  - id: sw-sql-string-interpolation
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      SQL is being assembled with string interpolation, so input can change the
+      statement structure instead of supplying a value. Use numbered
+      placeholders and pass values in the parameter array. Maps to SW-03.
+    metadata:
+      finding: SW-03
+      cwe: "CWE-89: SQL Injection"
+      owasp: "A03:2021 Injection"
+      confidence: HIGH
+    patterns:
+      - pattern: $DB.query($SQL, ...)
+      - metavariable-regex:
+          metavariable: $SQL
+          regex: (?s).*\$\{.*
+
+  - id: sw-record-lookup-without-owner-predicate
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A per-user record is selected by identifier with no ownership column in
+      the predicate. An identifier names a record; it does not authorise access
+      to it. Add the owner comparison to the WHERE clause. Maps to SW-01.
+    metadata:
+      finding: SW-01
+      cwe: "CWE-639: Authorization Bypass Through User-Controlled Key"
+      owasp: "A01:2021 Broken Access Control"
+      confidence: MEDIUM
+    patterns:
+      - pattern: $DB.query($SQL, ...)
+      - metavariable-regex:
+          metavariable: $SQL
+          regex: (?is).*\bfrom\s+(lab_)?(tickets|comments|wallets)\b.*\bwhere\b.*
+      - pattern-not-regex: (user_id|sender_id|recipient_id|author_id)
+
+  - id: sw-admin-route-missing-role-check
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      An /admin route is registered without a role guard in its own handler
+      chain. Authentication alone is not authorisation. Add the adminOnly
+      middleware to this route. Maps to SW-02.
+    metadata:
+      finding: SW-02
+      cwe: "CWE-862: Missing Authorization"
+      owasp: "A01:2021 Broken Access Control"
+      confidence: MEDIUM
+    patterns:
+      - pattern: $APP.$METHOD($PATH, ...)
+      - metavariable-regex:
+          metavariable: $METHOD
+          regex: ^(get|post|put|patch|delete)$
+      - metavariable-regex:
+          metavariable: $PATH
+          regex: .*/admin/.*
+      - pattern-not-regex: adminOnly
+
+  - id: sw-html-response-interpolation
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      Stored or user-supplied text is interpolated into an HTML response, so a
+      payload becomes markup in the viewer origin. Return data and let the
+      template layer escape it. Maps to SW-04.
+    metadata:
+      finding: SW-04
+      cwe: "CWE-79: Cross-site Scripting"
+      owasp: "A03:2021 Injection"
+      confidence: HIGH
+    patterns:
+      - pattern: $RES.send($HTML)
+      - metavariable-regex:
+          metavariable: $HTML
+          regex: (?s).*<[a-zA-Z].*\$\{.*
+
+  - id: sw-react-dangerous-html
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      dangerouslySetInnerHTML bypasses React escaping, which is the primary
+      control against stored XSS in this application. Render the value as text.
+      Maps to SW-04.
+    metadata:
+      finding: SW-04
+      cwe: "CWE-79: Cross-site Scripting"
+      owasp: "A03:2021 Injection"
+      confidence: HIGH
+    pattern-either:
+      - pattern: "<$TAG ... dangerouslySetInnerHTML={{ __html: $X }} ... />"
+      - pattern: $EL.innerHTML = $X
+
+  - id: sw-writable-protected-attribute
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A request schema accepts a protected attribute such as role. Public input
+      must never select its own privileges; keep the writable allowlist to
+      presentation fields. Maps to SW-05.
+    metadata:
+      finding: SW-05
+      cwe: "CWE-915: Improperly Controlled Modification of Object Attributes"
+      owasp: "A04:2021 Insecure Design"
+      confidence: MEDIUM
+    patterns:
+      - pattern: z.object($SHAPE)
+      - metavariable-regex:
+          metavariable: $SHAPE
+          regex: (?s).*\b(role|isAdmin|is_admin|permissions)\s*:.*
+
+  - id: sw-non-positive-amount-accepted
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A monetary amount schema permits a non-positive value, so a transfer can
+      run backwards. Require a positive integer with an upper bound. Maps to
+      SW-06.
+    metadata:
+      finding: SW-06
+      cwe: "CWE-20: Improper Input Validation"
+      owasp: "A04:2021 Insecure Design"
+      confidence: HIGH
+    patterns:
+      - pattern: z.number(...).int(...).min($N, ...)
+      - metavariable-comparison:
+          comparison: $N < 1
+
+  - id: sw-conditional-row-lock
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      FOR UPDATE is applied conditionally, so on one path the balance is read
+      without a lock and a concurrent request sees the same pre-debit value.
+      Acquire the lock unconditionally before the check. Maps to SW-07.
+    metadata:
+      finding: SW-07
+      cwe: "CWE-362: Race Condition"
+      owasp: "A04:2021 Insecure Design"
+      confidence: HIGH
+    patterns:
+      - pattern: $DB.query($SQL, ...)
+      - metavariable-regex:
+          metavariable: $SQL
+          regex: (?is).*\$\{[^}]*for update.*
+
+  - id: sw-conditional-transaction-boundary
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A transaction boundary is opened or closed inside a branch, so some paths
+      run unprotected by the transaction. Use one helper that always brackets
+      the work on a single connection. Maps to SW-07.
+    metadata:
+      finding: SW-07
+      cwe: "CWE-362: Race Condition"
+      owasp: "A04:2021 Insecure Design"
+      confidence: HIGH
+    pattern-either:
+      - pattern: if (...) await $DB.query("BEGIN");
+      - pattern: if (...) await $DB.query("COMMIT");
+      - pattern: if (...) await $DB.query("ROLLBACK");
+
+  - id: sw-money-route-ignores-idempotency-key
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A money-moving route never reads an idempotency key, so a retried request
+      is processed as a second payment. Claim a sender-scoped key inside the
+      same transaction as the debit. Maps to SW-08.
+    metadata:
+      finding: SW-08
+      cwe: "CWE-837: Improper Enforcement of a Single, Unique Action"
+      owasp: "A04:2021 Insecure Design"
+      confidence: MEDIUM
+    patterns:
+      - pattern: $APP.post($PATH, ...)
+      - metavariable-regex:
+          metavariable: $PATH
+          regex: .*(transfers|payments|withdraw).*
+      # Must be an actual read of the header. A passing mention of the word in a
+      # comment is not a control, and would otherwise suppress the rule.
+      - pattern-not-regex: (?i)\.get\([^)]*idempotency-key
+
+  # --- Preventive rules ------------------------------------------------------
+  # These guard classes of bug the codebase does not currently have. A guardrail
+  # that only encodes past incidents stops being a guardrail.
+
+  - id: sw-session-cookie-missing-flags
+    languages: [typescript, javascript]
+    severity: WARNING
+    message: >-
+      A cookie is set without httpOnly or without sameSite. A session or CSRF
+      cookie must carry both, plus secure wherever the deployment is HTTPS.
+    metadata:
+      cwe: "CWE-1004: Sensitive Cookie Without HttpOnly Flag"
+      owasp: "A05:2021 Security Misconfiguration"
+      confidence: MEDIUM
+    patterns:
+      - pattern: $RES.cookie($NAME, $VALUE, $OPTS)
+      - metavariable-regex:
+          metavariable: $NAME
+          regex: (?i).*(session|csrf|token|auth).*
+      - pattern-not-regex: (?s)(httpOnly[^)]*sameSite|sameSite[^)]*httpOnly|cookieOptions)
+
+  - id: sw-fast-hash-for-password
+    languages: [typescript, javascript]
+    severity: ERROR
+    message: >-
+      A password is being hashed with a fast digest. Fast hashes are correct for
+      high-entropy random tokens and wrong for human passwords; use Argon2id.
+    metadata:
+      cwe: "CWE-916: Use of Password Hash With Insufficient Computational Effort"
+      owasp: "A02:2021 Cryptographic Failures"
+      confidence: HIGH
+    patterns:
+      - pattern-either:
+          - pattern: createHash($ALGO).update($PW)
+          - pattern: createHash($ALGO).update($PW).digest(...)
+      - metavariable-regex:
+          metavariable: $ALGO
+          regex: (?i)"(md5|sha1|sha256|sha512)"
+      - metavariable-regex:
+          metavariable: $PW
+          regex: (?i).*(password|passwd|pwd|secret).*

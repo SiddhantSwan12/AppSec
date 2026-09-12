@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_USER: wallet
+      POSTGRES_PASSWORD: wallet_local_only
+      POSTGRES_DB: securewallet
+    ports: ["127.0.0.1:54329:5432"]
+    volumes:
+      - wallet_data:/var/lib/postgresql
+      - ./infra/init-test.sql:/docker-entrypoint-initdb.d/10-test.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wallet -d securewallet"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  mail:
+    image: axllent/mailpit:v1.29
+    ports: ["127.0.0.1:1025:1025", "127.0.0.1:8025:8025"]
+  lab-db:
+    image: postgres:18-alpine
+    profiles: ["lab"]
+    environment:
+      POSTGRES_USER: wallet
+      POSTGRES_PASSWORD: wallet_lab_only
+      POSTGRES_DB: securewallet_lab
+    ports: ["127.0.0.1:54330:5432"]
+    volumes: ["lab_data:/var/lib/postgresql"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wallet -d securewallet_lab"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  wallet_data:
+  lab_data:

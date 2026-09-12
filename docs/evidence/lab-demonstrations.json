@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-09-11T18:49:08.317Z",
+  "target": "http://127.0.0.1:4001",
+  "intentionallyIntroduced": true,
+  "complete": true,
+  "evidence": [
+    {
+      "scenario": "Broken object-level authorization",
+      "observed": {
+        "status": 200,
+        "owner": "11111111-1111-4111-8111-111111111111",
+        "caller": "22222222-2222-4222-8222-222222222222"
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Broken function-level authorization",
+      "observed": {
+        "status": 200,
+        "recordsRead": 3,
+        "callerRole": "user"
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "SQL injection",
+      "observed": {
+        "normalRecords": 0,
+        "injectedRecords": 1,
+        "exposedSender": "22222222-2222-4222-8222-222222222222"
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Stored XSS",
+      "observed": {
+        "browserMarker": "executed"
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Mass assignment",
+      "observed": {
+        "roleBefore": "user",
+        "roleAfter": "admin"
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Invalid transfer amount",
+      "observed": {
+        "acceptedAmount": -100,
+        "senderBefore": 100000,
+        "senderAfter": 100100
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Race condition",
+      "observed": {
+        "startingBalance": 100000,
+        "amountEach": 70000,
+        "statuses": [
+          201,
+          201
+        ],
+        "endingBalance": -40000
+      },
+      "expectedInsecureOutcome": true
+    },
+    {
+      "scenario": "Missing idempotency",
+      "observed": {
+        "processedTransfers": 2,
+        "senderBefore": 100000,
+        "senderAfter": 99000
+      },
+      "expectedInsecureOutcome": true
+    }
+  ]
+}

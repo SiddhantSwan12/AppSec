@@ -1,0 +1,14 @@
+# SecureWallet — local learning project, fake funds only.
+# Served from /.well-known/security.txt per RFC 9116.
+#
+# This application is not publicly deployed. If you are reading this from a
+# public host, that deployment was not made by the project author and the
+# intentionally vulnerable lab may be exposed. Treat it as untrusted.
+
+Contact: https://github.com/OWNER/securewallet/security/advisories/new
+Policy: https://github.com/OWNER/securewallet/blob/main/SECURITY.md
+Preferred-Languages: en
+
+# Expires must be updated when this file is revised. RFC 9116 requires a value
+# less than one year out; a stale file is worse than no file.
+Expires: 2027-09-12T00:00:00.000Z

@@ -1,0 +1,234 @@
+name: Security
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  schedule:
+    # Dependency and image findings appear without anyone pushing code, so the
+    # pipeline runs on a clock as well as on change.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # --------------------------------------------------------------------------
+  # Static analysis with the project's own rules. This is the gate: the custom
+  # ruleset must catch every finding in the lab corpus and stay silent on the
+  # secure application.
+  # --------------------------------------------------------------------------
+  sast-custom-rules:
+    name: Semgrep (project rules)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    container:
+      image: semgrep/semgrep:latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      - name: Verify the ruleset detects what it claims to detect
+        # Fails if a rule stopped matching its finding (a dead rule) or if any
+        # rule fires on the secure application (a regression).
+        run: node scripts/semgrep-verify.mjs
+
+      - name: Produce SARIF for code scanning
+        run: semgrep --config semgrep/rules --sarif --output semgrep-custom.sarif --metrics off
+        continue-on-error: true
+
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep-custom.sarif
+          category: semgrep-custom
+        continue-on-error: true
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semgrep-verification
+          path: docs/evidence/semgrep-verification.json
+
+  # --------------------------------------------------------------------------
+  # Community rulesets. Reported, not gating: a third-party ruleset that blocks
+  # merges on its own findings trains people to bypass the pipeline.
+  # --------------------------------------------------------------------------
+  sast-community-rules:
+    name: Semgrep (community rulesets)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      security-events: write
+    container:
+      image: semgrep/semgrep:latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Scan
+        run: |
+          semgrep --config p/owasp-top-ten --config p/javascript --config p/secrets \
+            --sarif --output semgrep-community.sarif --metrics off
+        continue-on-error: true
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep-community.sarif
+          category: semgrep-community
+        continue-on-error: true
+
+  # --------------------------------------------------------------------------
+  secret-scanning:
+    name: Secret scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          # Full history: a secret removed in a later commit is still a secret.
+          fetch-depth: 0
+      - name: gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # --------------------------------------------------------------------------
+  dependencies:
+    name: Dependencies and SBOM
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci --ignore-scripts
+
+      - name: npm audit
+        run: npm audit --audit-level=high
+
+      - name: OSV-Scanner
+        uses: google/osv-scanner-action/osv-scanner-action@v2
+        with:
+          scan-args: |-
+            --lockfile=package-lock.json
+            --lockfile=requirements.txt:security-runner/requirements.lock.txt
+        continue-on-error: true
+
+      - name: Generate CycloneDX SBOM
+        run: npm run sbom
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: docs/evidence/sbom.cdx.json
+          retention-days: 90
+
+  # --------------------------------------------------------------------------
+  container-images:
+    name: Container image scanning
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        image:
+          - postgres:18-alpine
+          - axllent/mailpit:v1.29
+    steps:
+      - uses: actions/checkout@v5
+      - name: Trivy
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ matrix.image }}
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+          exit-code: "0"
+          format: table
+
+  # --------------------------------------------------------------------------
+  # Dynamic analysis against a running instance: a passive baseline sweep, a
+  # schema-driven fuzz run, and the project's own authorization rules.
+  # --------------------------------------------------------------------------
+  dast:
+    name: Running-application checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      db:
+        image: postgres:18-alpine
+        env:
+          POSTGRES_USER: wallet
+          POSTGRES_PASSWORD: wallet_local_only
+          POSTGRES_DB: securewallet
+        ports: ["54329:5432"]
+        options: >-
+          --health-cmd "pg_isready -U wallet -d securewallet"
+          --health-interval 3s --health-timeout 3s --health-retries 20
+      mail:
+        image: axllent/mailpit:v1.29
+        ports: ["1025:1025", "8025:8025"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci --ignore-scripts
+      - run: cp .env.example .env
+
+      - name: Migrate and seed
+        run: |
+          npm run db:migrate
+          npm run db:seed
+
+      - name: Start the application
+        run: |
+          npm run dev > dev-server.log 2>&1 &
+          npx wait-on http://localhost:3000/login http://localhost:3000/api/v1/health --timeout 120000
+
+      - name: Configured authorization rules
+        run: |
+          python -m venv .venv
+          .venv/bin/python -m pip install -r security-runner/requirements.lock.txt
+          npm run security:run
+
+      - name: Schema-driven API fuzzing
+        run: |
+          .venv/bin/python -m pip install -r security-runner/fuzz-requirements.txt
+          npm run security:fuzz
+
+      - name: ZAP baseline sweep
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: http://localhost:3000
+          # Passive scan only. An active scan against a seeded demo database
+          # would report its own writes as findings.
+          cmd_options: "-a -I"
+          allow_issue_writing: false
+        continue-on-error: true
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dast-evidence
+          path: |
+            docs/evidence/
+            dev-server.log
+          retention-days: 14
