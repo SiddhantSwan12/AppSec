@@ -56,7 +56,7 @@ jobs:
           category: semgrep-custom
         continue-on-error: true
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: semgrep-verification
@@ -132,7 +132,7 @@ jobs:
       - name: Generate CycloneDX SBOM
         run: npm run sbom
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: sbom
           path: docs/evidence/sbom.cdx.json
@@ -225,7 +225,7 @@ jobs:
 
       - name: Upload evidence
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: dast-evidence
           path: |
