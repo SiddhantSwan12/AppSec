@@ -12,6 +12,7 @@ playwright-report/
 *.tsbuildinfo
 .impeccable/
 artifacts/private/
+.vercel/
 
 # Property-based testing caches written by the fuzz run.
 .hypothesis/

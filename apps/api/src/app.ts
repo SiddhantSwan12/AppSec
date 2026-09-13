@@ -1,6 +1,6 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import helmet from "helmet";
+import * as helmetModule from "helmet";
 import { z, ZodError } from "zod";
 import { randomUUID } from "node:crypto";
 import { pool, transaction } from "./db.js";
@@ -18,6 +18,9 @@ import { transfer, transferSchema } from "./transfers.js";
 import { safeText } from "./validation.js";
 
 export const app = express();
+const helmet = (
+  (helmetModule as unknown as { default?: unknown }).default ?? helmetModule
+) as () => express.RequestHandler;
 app.disable("x-powered-by");
 // Without this, every request arrives from the Next.js rewrite as 127.0.0.1 and
 // the source-based throttle degrades into one bucket for the whole deployment.
@@ -319,3 +322,6 @@ const errors: express.ErrorRequestHandler = (error, req, res, _next) => {
   });
 };
 app.use(errors);
+
+// Vercel discovers the Express application through this default export.
+export default app;

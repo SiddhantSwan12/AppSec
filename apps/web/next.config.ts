@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
+
+const apiOrigin = process.env.API_ORIGIN ?? "http://127.0.0.1:4000";
+
 const config: NextConfig = {
   devIndicators: false,
   async rewrites() {
     return [
       {
         source: "/api/:path*",
-        destination: "http://127.0.0.1:4000/api/:path*",
+        destination: `${apiOrigin}/api/:path*`,
       },
     ];
   },
