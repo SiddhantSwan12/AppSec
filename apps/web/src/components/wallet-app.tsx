@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api, money, parsePaise, RequestError } from "../lib/api";
+import LandingPage from "./landing-page";
 
 type User = { id: string; name: string; email: string; role: "user" | "admin" };
 type Transfer = {
@@ -114,7 +115,7 @@ function AuthForm({ path }: { path: string }) {
         method: "POST",
         body: JSON.stringify(values),
       });
-      if (path === "login") router.push("/");
+      if (path === "login") router.push("/wallet");
       else {
         setMessage(result.message ?? "Done.");
         if (path === "reset-password")
@@ -248,11 +249,13 @@ export default function WalletApp({ path }: { path: string }) {
     key: string;
   } | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const isLanding = path === "";
   const isPublic = publicRoutes.includes(path);
+  const isOverview = path === "wallet";
   const section = path.split("/")[0];
   const adminView = path.split("/")[1] || "users";
   const load = useCallback(async () => {
-    if (isPublic) {
+    if (isPublic || isLanding) {
       setLoading(false);
       return;
     }
@@ -262,13 +265,13 @@ export default function WalletApp({ path }: { path: string }) {
     try {
       const me = await api<{ user: User }>("/auth/me");
       setUser(me.user);
-      if (!path || path === "transfer") {
+      if (isOverview || path === "transfer") {
         const { wallet } = await api<{ wallet: { balance: string } }>(
           "/wallet",
         );
         setBalance(wallet.balance);
       }
-      if (!path || path === "transactions") {
+      if (isOverview || path === "transactions") {
         const result = await api<{ items: Transfer[]; hasMore: boolean }>(
           `/transactions?page=${page}&limit=${path ? 10 : 5}&direction=${direction}&search=${encodeURIComponent(search)}`,
         );
@@ -316,7 +319,18 @@ export default function WalletApp({ path }: { path: string }) {
     } finally {
       setLoading(false);
     }
-  }, [path, isPublic, page, direction, search, section, adminView, router]);
+  }, [
+    path,
+    isPublic,
+    isLanding,
+    isOverview,
+    page,
+    direction,
+    search,
+    section,
+    adminView,
+    router,
+  ]);
   useEffect(() => {
     void load();
   }, [load]);
@@ -332,9 +346,10 @@ export default function WalletApp({ path }: { path: string }) {
       setBusy(false);
     }
   }
+  if (isLanding) return <LandingPage />;
   if (isPublic) return <AuthForm path={path} />;
   const titles: Record<string, string> = {
-    "": "Your wallet",
+    wallet: "Your wallet",
     transfer: "Send money",
     transactions: "Activity",
     support: "How can we help?",
@@ -342,7 +357,7 @@ export default function WalletApp({ path }: { path: string }) {
     admin: "Administration",
   };
   const known = [
-    "",
+    "wallet",
     "transfer",
     "transactions",
     "support",
@@ -422,7 +437,7 @@ export default function WalletApp({ path }: { path: string }) {
         </Link>
         <nav aria-label="Main navigation">
           {[
-            ["", "Overview"],
+            ["wallet", "Overview"],
             ["transfer", "Send money"],
             ["transactions", "Activity"],
             ["support", "Support"],
@@ -460,7 +475,7 @@ export default function WalletApp({ path }: { path: string }) {
           <div>
             <h1>{known ? titles[section] : "Page not found"}</h1>
             <p className="muted">
-              {!path
+              {isOverview
                 ? `Good to see you${user ? `, ${user.name.split(" ")[0]}` : ""}. Here’s where things stand.`
                 : section === "admin"
                   ? "Review accounts, support requests, and wallet activity."
@@ -486,8 +501,8 @@ export default function WalletApp({ path }: { path: string }) {
           </p>
         ) : ready ? (
           <>
-            {!known && <Link href="/">Return to your wallet</Link>}
-            {!path && (
+            {!known && <Link href="/wallet">Return to your wallet</Link>}
+            {isOverview && (
               <>
                 <section className="balance-panel">
                   <div>
