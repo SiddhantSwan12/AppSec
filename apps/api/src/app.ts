@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import * as helmetModule from "helmet";
 import { z, ZodError } from "zod";
 import { randomUUID } from "node:crypto";
-import { pool, transaction } from "./db.js";
+import { pool, withIdentity } from "./db.js";
 import { trustProxy } from "./config.js";
 import { audit, sourceIp } from "./audit.js";
 import { evaluate, rules as detectionRules } from "./detections.js";
@@ -18,9 +18,8 @@ import { transfer, transferSchema } from "./transfers.js";
 import { safeText } from "./validation.js";
 
 export const app = express();
-const helmet = (
-  (helmetModule as unknown as { default?: unknown }).default ?? helmetModule
-) as () => express.RequestHandler;
+const helmet = ((helmetModule as unknown as { default?: unknown }).default ??
+  helmetModule) as () => express.RequestHandler;
 app.disable("x-powered-by");
 // Without this, every request arrives from the Next.js rewrite as 127.0.0.1 and
 // the source-based throttle degrades into one bucket for the whole deployment.
@@ -48,9 +47,10 @@ const pageSchema = z.object({
 });
 api.get("/wallet", async (req, res) => {
   const wallet = (
-    await pool.query(
-      "SELECT id,user_id,balance FROM wallets WHERE user_id=$1",
-      [req.user!.id],
+    await withIdentity(req.user!, (db) =>
+      db.query("SELECT id,user_id,balance FROM wallets WHERE user_id=$1", [
+        req.user!.id,
+      ]),
     )
   ).rows[0];
   res.json({ wallet: { ...wallet, currency: "INR" } });
@@ -61,9 +61,11 @@ api.patch("/profile", async (req, res) => {
     .strict()
     .parse(req.body);
   const user = (
-    await pool.query(
-      "UPDATE users SET name=$1 WHERE id=$2 RETURNING id,name,email,role",
-      [input.name, req.user!.id],
+    await withIdentity(req.user!, (db) =>
+      db.query(
+        "UPDATE users SET name=$1 WHERE id=$2 RETURNING id,name,email,role",
+        [input.name, req.user!.id],
+      ),
     )
   ).rows[0];
   res.json({ user });
@@ -76,7 +78,7 @@ api.post("/transfers", async (req, res) => {
     .max(128)
     .regex(/^[\w-]+$/)
     .parse(req.get("idempotency-key"));
-  const result = await transfer(req.user!.id, input, key, sourceIp(req));
+  const result = await transfer(req.user!, input, key, sourceIp(req));
   res.status(result.replayed ? 200 : 201).json(result);
 });
 api.get("/transactions", async (req, res) => {
@@ -90,19 +92,21 @@ api.get("/transactions", async (req, res) => {
   // pattern syntax inside LIKE. Escaping them keeps the search a literal
   // substring match instead of a user-controlled scan.
   const like = input.search.replace(/([!%_])/g, "!$1");
-  const rows = await pool.query(
-    `SELECT t.*,s.name AS sender_name,r.name AS recipient_name FROM transfers t
+  const rows = await withIdentity(req.user!, (db) =>
+    db.query(
+      `SELECT t.*,s.name AS sender_name,r.name AS recipient_name FROM transfers t
  JOIN users s ON s.id=t.sender_id JOIN users r ON r.id=t.recipient_id
  WHERE (sender_id=$1 OR recipient_id=$1) AND ($2='all' OR ($2='incoming' AND recipient_id=$1) OR ($2='outgoing' AND sender_id=$1))
  AND (t.note ILIKE '%' || $3 || '%' ESCAPE '!' OR s.name ILIKE '%' || $3 || '%' ESCAPE '!' OR r.name ILIKE '%' || $3 || '%' ESCAPE '!')
  ORDER BY t.created_at DESC,t.id DESC LIMIT $4 OFFSET $5`,
-    [
-      req.user!.id,
-      input.direction,
-      like,
-      input.limit + 1,
-      (input.page - 1) * input.limit,
-    ],
+      [
+        req.user!.id,
+        input.direction,
+        like,
+        input.limit + 1,
+        (input.page - 1) * input.limit,
+      ],
+    ),
   );
   res.json({
     items: rows.rows.slice(0, input.limit),
@@ -113,9 +117,11 @@ api.get("/transactions", async (req, res) => {
 api.get("/transactions/:id", async (req, res) => {
   const id = z.uuid().parse(req.params.id);
   const row = (
-    await pool.query(
-      "SELECT * FROM transfers WHERE id=$1 AND (sender_id=$2 OR recipient_id=$2)",
-      [id, req.user!.id],
+    await withIdentity(req.user!, (db) =>
+      db.query(
+        "SELECT * FROM transfers WHERE id=$1 AND (sender_id=$2 OR recipient_id=$2)",
+        [id, req.user!.id],
+      ),
     )
   ).rows[0];
   if (!row) throw new ApiError(404, "NOT_FOUND", "Transaction not found.");
@@ -124,9 +130,11 @@ api.get("/transactions/:id", async (req, res) => {
 api.get("/tickets", async (req, res) => {
   const { page, limit } = pageSchema.parse(req.query);
   const rows = (
-    await pool.query(
-      "SELECT * FROM tickets WHERE user_id=$1 ORDER BY created_at DESC,id DESC LIMIT $2 OFFSET $3",
-      [req.user!.id, limit + 1, (page - 1) * limit],
+    await withIdentity(req.user!, (db) =>
+      db.query(
+        "SELECT * FROM tickets WHERE user_id=$1 ORDER BY created_at DESC,id DESC LIMIT $2 OFFSET $3",
+        [req.user!.id, limit + 1, (page - 1) * limit],
+      ),
     )
   ).rows;
   res.json({ items: rows.slice(0, limit), page, hasMore: rows.length > limit });
@@ -136,7 +144,7 @@ api.post("/tickets", async (req, res) => {
     .object({ subject: safeText(120), body: safeText(5000) })
     .strict()
     .parse(req.body);
-  const ticket = await transaction(async (db) => {
+  const ticket = await withIdentity(req.user!, async (db) => {
     const id = randomUUID();
     const row = (
       await db.query(
@@ -155,17 +163,22 @@ api.post("/tickets", async (req, res) => {
 api.get("/tickets/:id", async (req, res) => {
   const id = z.uuid().parse(req.params.id);
   const ticket = (
-    await pool.query(
-      "SELECT * FROM tickets WHERE id=$1 AND (user_id=$2 OR $3)",
-      [id, req.user!.id, req.user!.role === "admin"],
+    await withIdentity(req.user!, (db) =>
+      db.query("SELECT * FROM tickets WHERE id=$1 AND (user_id=$2 OR $3)", [
+        id,
+        req.user!.id,
+        req.user!.role === "admin",
+      ]),
     )
   ).rows[0];
   if (!ticket)
     throw new ApiError(404, "NOT_FOUND", "Support ticket not found.");
   const comments = (
-    await pool.query(
-      "SELECT c.id,c.body,c.created_at,u.name,u.role FROM comments c JOIN users u ON u.id=c.author_id WHERE ticket_id=$1 ORDER BY c.created_at,c.id",
-      [id],
+    await withIdentity(req.user!, (db) =>
+      db.query(
+        "SELECT c.id,c.body,c.created_at,u.name,u.role FROM comments c JOIN users u ON u.id=c.author_id WHERE ticket_id=$1 ORDER BY c.created_at,c.id",
+        [id],
+      ),
     )
   ).rows;
   res.json({ ticket, comments });
@@ -176,7 +189,7 @@ api.post("/tickets/:id/comments", async (req, res) => {
     .object({ body: safeText(5000) })
     .strict()
     .parse(req.body);
-  await transaction(async (db) => {
+  await withIdentity(req.user!, async (db) => {
     const ticket = (
       await db.query(
         "SELECT * FROM tickets WHERE id=$1 AND (user_id=$2 OR $3) FOR UPDATE",
@@ -221,7 +234,11 @@ for (const [path, sql] of Object.entries({
 })) {
   api.get(`/admin/${path}`, adminOnly, async (req, res) => {
     const { page, limit } = pageSchema.parse(req.query);
-    const rows = (await pool.query(sql, [limit + 1, (page - 1) * limit])).rows;
+    const rows = (
+      await withIdentity(req.user!, (db) =>
+        db.query(sql, [limit + 1, (page - 1) * limit]),
+      )
+    ).rows;
     res.json({
       items: rows.slice(0, limit),
       page,
@@ -229,11 +246,11 @@ for (const [path, sql] of Object.entries({
     });
   });
 }
-api.get("/admin/detections", adminOnly, async (_req, res) => {
+api.get("/admin/detections", adminOnly, async (req, res) => {
   res.json({
     generated_at: new Date().toISOString(),
     rules: detectionRules.length,
-    items: await evaluate(),
+    items: await withIdentity(req.user!, (db) => evaluate(db)),
   });
 });
 api.patch("/admin/tickets/:id", adminOnly, async (req, res) => {
@@ -242,7 +259,7 @@ api.patch("/admin/tickets/:id", adminOnly, async (req, res) => {
     .object({ status: z.enum(["open", "closed"]) })
     .strict()
     .parse(req.body);
-  const ticket = await transaction(async (db) => {
+  const ticket = await withIdentity(req.user!, async (db) => {
     const row = (
       await db.query("UPDATE tickets SET status=$1 WHERE id=$2 RETURNING *", [
         status,
@@ -282,11 +299,13 @@ const errors: express.ErrorRequestHandler = (error, req, res, _next) => {
     // A denial means the control worked. Recording it is what makes a burst of
     // denials visible to DET-05; the response to the caller is unchanged.
     if ((error.status === 403 || error.status === 404) && req.user)
-      void audit(pool, {
-        userId: req.user.id,
-        event: "authz.denied",
-        ip: sourceIp(req),
-      }).catch(() => {});
+      void withIdentity(req.user, (db) =>
+        audit(db, {
+          userId: req.user!.id,
+          event: "authz.denied",
+          ip: sourceIp(req),
+        }),
+      ).catch(() => {});
     res
       .status(error.status)
       .json({ error: { code: error.code, message: error.message } });

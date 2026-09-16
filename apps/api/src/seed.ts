@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import { pool, transaction } from "./db.js";
+import { pool, withSystemAccess } from "./db.js";
 import { hashPassword } from "./security.js";
 export const demoIds = {
   alice: "11111111-1111-4111-8111-111111111111",
@@ -12,7 +12,7 @@ export async function seed() {
   if (!password || password.length < 12)
     throw new Error("Set DEMO_PASSWORD to at least 12 characters.");
   const hash = await hashPassword(password);
-  await transaction(async (db) => {
+  await withSystemAccess(async (db) => {
     for (const name of ["alice", "bob", "admin"] as const) {
       const id = demoIds[name];
       const created = await db.query(

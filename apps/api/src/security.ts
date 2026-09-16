@@ -2,7 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import argon2 from "argon2";
 import type { RequestHandler } from "express";
 import { config } from "./config.js";
-import { pool } from "./db.js";
+import { withSystemAccess } from "./db.js";
 
 export const hashToken = (token: string) =>
   createHash("sha256").update(token).digest("hex");
@@ -53,10 +53,12 @@ export const authenticate: RequestHandler = async (req, res, next) => {
   const raw = req.cookies[sessionCookie];
   if (typeof raw !== "string")
     throw new ApiError(401, "AUTH_REQUIRED", "Please sign in to continue.");
-  const result = await pool.query<Identity>(
-    `SELECT u.id,u.name,u.email,u.role FROM sessions s JOIN users u ON u.id=s.user_id
+  const result = await withSystemAccess((db) =>
+    db.query<Identity>(
+      `SELECT u.id,u.name,u.email,u.role FROM sessions s JOIN users u ON u.id=s.user_id
  WHERE s.token_hash=$1 AND s.expires_at>now()`,
-    [hashToken(raw)],
+      [hashToken(raw)],
+    ),
   );
   if (!result.rows[0])
     throw new ApiError(

@@ -53,7 +53,7 @@ Bob's recipient account ID: `22222222-2222-4222-8222-222222222222`. Alice's: `11
 
 Three workflows run on every push and pull request, and weekly on a schedule:
 
-- **`ci.yml`** — lint, typecheck, build, OpenAPI validation, 36 API tests, 12 browser tests, the Python unit tests and the configured authorization run, against real PostgreSQL and Mailpit service containers.
+- **`ci.yml`** — lint, typecheck, build, OpenAPI validation, API and browser tests, the Python unit tests and the configured authorization run, against real PostgreSQL and Mailpit service containers.
 - **`security.yml`** — the project's own Semgrep rules (gating), community rulesets (reporting), gitleaks over full history, `npm audit` and OSV-Scanner, Trivy on both container images, a CycloneDX SBOM, plus schema-driven fuzzing and a ZAP baseline sweep against a running instance.
 - **`codeql.yml`** — CodeQL `security-extended` for TypeScript and Python.
 

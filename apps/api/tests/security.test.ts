@@ -10,7 +10,7 @@ import {
 import request from "supertest";
 import { randomUUID } from "node:crypto";
 import { app } from "../src/app.js";
-import { pool } from "../src/db.js";
+import { pool, withIdentity, withSystemAccess } from "../src/db.js";
 import { migrate } from "../src/migrate.js";
 import { seed, demoIds } from "../src/seed.js";
 import { hashToken, sessionCookie } from "../src/security.js";
@@ -91,6 +91,40 @@ async function releaseWhenBlocked(
     "Concurrency barrier did not observe both requests waiting on PostgreSQL locks.",
   );
 }
+
+describe("PostgreSQL row-level security", () => {
+  it("limits a user to their own wallet even when SQL omits the owner filter", async () => {
+    const rows = await withIdentity({ id: demoIds.alice, role: "user" }, (db) =>
+      db.query("SELECT user_id FROM wallets ORDER BY user_id"),
+    );
+    expect(rows.rows.map((row) => row.user_id)).toEqual([demoIds.alice]);
+  });
+
+  it("does not expose rows when the restricted role has no request identity", async () => {
+    const client = await pool.connect();
+    try {
+      await client.query("BEGIN");
+      await client.query("SET LOCAL ROLE securewallet_rls");
+      const rows = await client.query("SELECT user_id FROM wallets");
+      expect(rows.rowCount).toBe(0);
+      await client.query("ROLLBACK");
+    } finally {
+      client.release();
+    }
+  });
+
+  it("lets administrators and system operations see all wallets", async () => {
+    const adminRows = await withIdentity(
+      { id: demoIds.admin, role: "admin" },
+      (db) => db.query("SELECT user_id FROM wallets"),
+    );
+    const systemRows = await withSystemAccess((db) =>
+      db.query("SELECT user_id FROM wallets"),
+    );
+    expect(adminRows.rowCount).toBe(3);
+    expect(systemRows.rowCount).toBe(3);
+  });
+});
 describe("authentication and permissions", () => {
   it("throttles authentication attempts outside test bypass mode", async () => {
     const agent = request.agent(app);
@@ -513,7 +547,11 @@ describe("financial integrity with real PostgreSQL", () => {
 describe("SW-09 source and account throttling", () => {
   // The limiters are module-level, so every case uses its own forwarded
   // address and account to get a clean bucket.
-  async function attempt(from: string, email: string, csrfAgent = request.agent(app)) {
+  async function attempt(
+    from: string,
+    email: string,
+    csrfAgent = request.agent(app),
+  ) {
     const csrf = (await csrfAgent.get("/api/v1/auth/csrf")).body.csrfToken;
     return csrfAgent
       .post("/api/v1/auth/login")
@@ -529,12 +567,14 @@ describe("SW-09 source and account throttling", () => {
       for (let i = 0; i < 30; i++)
         last = (await attempt("203.0.113.10", `sw09a${i}@example.test`)).status;
       expect(last).toBe(401);
-      expect((await attempt("203.0.113.10", "sw09a-final@example.test")).status).toBe(
-        429,
-      );
+      expect(
+        (await attempt("203.0.113.10", "sw09a-final@example.test")).status,
+      ).toBe(429);
       // A different source must not inherit the exhausted budget. Before the
       // fix every request presented as 127.0.0.1 and this returned 429.
-      expect((await attempt("203.0.113.11", "sw09b@example.test")).status).toBe(401);
+      expect((await attempt("203.0.113.11", "sw09b@example.test")).status).toBe(
+        401,
+      );
     } finally {
       vi.unstubAllEnvs();
     }
@@ -592,7 +632,12 @@ describe("SW-09 source and account throttling", () => {
 });
 
 describe("detection rules over the audit trail", () => {
-  async function record(event: string, userId: string | null, ip: string | null, times: number) {
+  async function record(
+    event: string,
+    userId: string | null,
+    ip: string | null,
+    times: number,
+  ) {
     for (let i = 0; i < times; i++)
       await pool.query(
         "INSERT INTO audit_events(user_id,event,source_ip) VALUES($1,$2,$3)",
@@ -604,10 +649,14 @@ describe("detection rules over the audit trail", () => {
     await record("auth.login_failed", demoIds.alice, "192.0.2.1", 4);
     const quiet = await admin.agent.get("/api/v1/admin/detections");
     expect(quiet.status).toBe(200);
-    expect(quiet.body.items.filter((i: { rule: string }) => i.rule === "DET-01")).toHaveLength(0);
+    expect(
+      quiet.body.items.filter((i: { rule: string }) => i.rule === "DET-01"),
+    ).toHaveLength(0);
     await record("auth.login_failed", demoIds.alice, "192.0.2.1", 1);
     const firing = await admin.agent.get("/api/v1/admin/detections");
-    const alert = firing.body.items.find((i: { rule: string }) => i.rule === "DET-01");
+    const alert = firing.body.items.find(
+      (i: { rule: string }) => i.rule === "DET-01",
+    );
     expect(alert).toMatchObject({
       rule: "DET-01",
       severity: "high",
@@ -637,16 +686,21 @@ describe("detection rules over the audit trail", () => {
     // The denial itself is recorded; the response to Bob is unchanged.
     const admin = await actor("admin");
     const result = await admin.agent.get("/api/v1/admin/detections");
-    const alert = result.body.items.find((i: { rule: string }) => i.rule === "DET-05");
-    expect(alert).toMatchObject({ subject: "bob@example.test", severity: "medium" });
+    const alert = result.body.items.find(
+      (i: { rule: string }) => i.rule === "DET-05",
+    );
+    expect(alert).toMatchObject({
+      subject: "bob@example.test",
+      severity: "medium",
+    });
     expect(alert.count).toBeGreaterThanOrEqual(5);
   });
   it("refuses the detections feed to non-admins and anonymous callers", async () => {
     const bob = await actor("bob");
     expect((await bob.agent.get("/api/v1/admin/detections")).status).toBe(403);
-    expect(
-      (await request(app).get("/api/v1/admin/detections")).status,
-    ).toBe(401);
+    expect((await request(app).get("/api/v1/admin/detections")).status).toBe(
+      401,
+    );
   });
 });
 
@@ -660,12 +714,18 @@ describe("SW-09 follow-on: LIKE metacharacters stay literal", () => {
     });
     const all = await a.agent.get("/api/v1/transactions");
     expect(all.body.items.length).toBeGreaterThan(0);
-    const wildcard = await a.agent.get("/api/v1/transactions").query({ search: "%" });
+    const wildcard = await a.agent
+      .get("/api/v1/transactions")
+      .query({ search: "%" });
     expect(wildcard.status).toBe(200);
     expect(wildcard.body.items).toHaveLength(0);
-    const underscore = await a.agent.get("/api/v1/transactions").query({ search: "_" });
+    const underscore = await a.agent
+      .get("/api/v1/transactions")
+      .query({ search: "_" });
     expect(underscore.body.items).toHaveLength(0);
-    const literal = await a.agent.get("/api/v1/transactions").query({ search: "Groc" });
+    const literal = await a.agent
+      .get("/api/v1/transactions")
+      .query({ search: "Groc" });
     expect(literal.body.items).toHaveLength(1);
   });
 });
@@ -681,15 +741,19 @@ describe("SW-11 control characters in stored text", () => {
     expect(result.status).toBe(400);
     expect(result.body.error.code).toBe("VALIDATION_ERROR");
     expect(
-      (await pool.query("SELECT count(*) FROM tickets WHERE subject='Support request'"))
-        .rows[0].count,
+      (
+        await pool.query(
+          "SELECT count(*) FROM tickets WHERE subject='Support request'",
+        )
+      ).rows[0].count,
     ).toBe("0");
   });
   it("rejects control characters across every free-text field", async () => {
     const a = await actor();
     const bell = String.fromCharCode(7);
     expect(
-      (await a.post("/tickets", { subject: `Sub${bell}`, body: "Body" })).status,
+      (await a.post("/tickets", { subject: `Sub${bell}`, body: "Body" }))
+        .status,
     ).toBe(400);
     expect(
       (

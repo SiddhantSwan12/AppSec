@@ -2,7 +2,7 @@ import { Router, type RequestHandler } from "express";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
 import nodemailer from "nodemailer";
-import { pool, transaction } from "./db.js";
+import { withIdentity, withSystemAccess } from "./db.js";
 import { config } from "./config.js";
 import { audit, sourceIp } from "./audit.js";
 import { safeText } from "./validation.js";
@@ -53,7 +53,7 @@ auth.post("/register", ...throttled, async (req, res) => {
     .extend({ name: safeText(80), password })
     .parse(req.body);
   const hash = await hashPassword(input.password);
-  await transaction(async (db) => {
+  await withSystemAccess(async (db) => {
     const id = randomUUID();
     // role is absent from the allowlist; PostgreSQL supplies the 'user' default.
     await db.query(
@@ -72,7 +72,7 @@ auth.post("/login", ...throttled, async (req, res) => {
   const ip = sourceIp(req);
   const input = credentials.parse(req.body);
   const raw = token();
-  const attempt = await transaction(async (db) => {
+  const attempt = await withSystemAccess(async (db) => {
     const row = (
       await db.query("SELECT * FROM users WHERE email=$1 FOR UPDATE", [
         input.email,
@@ -117,13 +117,15 @@ auth.post("/login", ...throttled, async (req, res) => {
 });
 auth.get("/me", authenticate, (req, res) => res.json({ user: req.user }));
 auth.post("/logout", authenticate, async (req, res) => {
-  await pool.query("DELETE FROM sessions WHERE token_hash=$1", [
-    hashToken(req.cookies[sessionCookie]),
-  ]);
-  await audit(pool, {
-    userId: req.user!.id,
-    event: "auth.logout",
-    ip: sourceIp(req),
+  await withIdentity(req.user!, async (db) => {
+    await db.query("DELETE FROM sessions WHERE token_hash=$1", [
+      hashToken(req.cookies[sessionCookie]),
+    ]);
+    await audit(db, {
+      userId: req.user!.id,
+      event: "auth.logout",
+      ip: sourceIp(req),
+    });
   });
   res
     .clearCookie(sessionCookie, cookieOptions)
@@ -136,7 +138,7 @@ auth.post("/password", authenticate, ...throttled, async (req, res) => {
     .strict()
     .parse(req.body);
   const hash = await hashPassword(input.newPassword);
-  await transaction(async (db) => {
+  await withIdentity(req.user!, async (db) => {
     const user = (
       await db.query("SELECT password_hash FROM users WHERE id=$1 FOR UPDATE", [
         req.user!.id,
@@ -171,7 +173,7 @@ auth.post("/forgot-password", ...throttled, async (req, res) => {
     .strict()
     .parse(req.body);
   const raw = token();
-  const user = await transaction(async (db) => {
+  const user = await withSystemAccess(async (db) => {
     const row = (
       await db.query("SELECT id,email FROM users WHERE email=$1 FOR UPDATE", [
         email,
@@ -215,7 +217,7 @@ auth.post("/reset-password", ...throttled, async (req, res) => {
     .strict()
     .parse(req.body);
   const hash = await hashPassword(input.newPassword);
-  await transaction(async (db) => {
+  await withSystemAccess(async (db) => {
     const hint = (
       await db.query("SELECT user_id FROM reset_tokens WHERE token_hash=$1", [
         hashToken(input.token),

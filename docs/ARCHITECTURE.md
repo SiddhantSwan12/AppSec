@@ -25,6 +25,14 @@ State-changing requests require an exact configured Origin and a double-submit C
 
 Reset tokens are random, hashed in storage, single-use, and valid for 20 minutes. The local email contains the raw token in the URL fragment; the browser submits it in a POST body. Password-changing operations serialize on the user row. Reset responses use generic text, but this lab does not claim constant-time email delivery or complete enumeration resistance.
 
+## Row-level security
+
+PostgreSQL row-level security is enabled and forced on all ten application tables. The API opens a transaction, changes from the schema-owning migration role to the `securewallet_rls` NOLOGIN role, and stores the authenticated user ID and role with transaction-local `set_config` calls. Policies then restrict wallets, transfers, tickets, comments, sessions and other records to that identity. Transaction-local settings are essential with a connection pool: a session-level setting could leak one user's identity into a later request that reused the same connection.
+
+Authentication, registration, password reset, seeding and audit ingestion use a separate internal context. That context is selected only by server code and is never derived from request input. Transfers add the validated recipient ID to the same local context so PostgreSQL permits exactly the sender and recipient wallet rows while both balances and ledger entries are updated atomically. Administrators receive broad read access through the policy, while ordinary users remain row-scoped even if an application query accidentally omits its ownership predicate. The existing predicates remain in SQL as an additional control and to make intent visible during review.
+
+The hosted database is Neon PostgreSQL rather than Supabase. RLS is a PostgreSQL capability, so the policy model is the same idea, but this Express API supplies request identity explicitly instead of receiving Supabase Auth JWT claims through PostgREST.
+
 ## Transfer and ledger invariant
 
 Amounts arrive as positive integer paise, up to 100,000,000 per transfer. The frontend converts rupee strings using BigInt rather than multiplying a floating-point value. PostgreSQL bigint values are returned as decimal strings. Wallet balances are capped at 9,000,000,000,000 paise, below JavaScript's safe integer limit.
@@ -44,7 +52,7 @@ Failed requests do not reserve an idempotency key. Successful keys currently per
 
 The secure entry point never imports `src/lab`. The lab has a separate process, separate database credentials and tables, a Docker opt-in profile, separate cookie names, and a loopback-only port. Open the wallet on `localhost` and the lab on `127.0.0.1`, keeping their browser hosts distinct as documented. Never deploy the lab publicly.
 
-Local DB credentials are demo superuser credentials for easy migration. A real deployment needs a least-privilege application DB role, managed secrets, shared throttling, operational monitoring, cleanup/retention jobs, TLS termination, and a reviewed proxy configuration. No real payment provider, KYC, fraud engine, MFA, backup system, or production security certification is claimed.
+Local DB credentials are demo owner credentials for easy migration. Normal application queries drop to the `securewallet_rls` NOLOGIN role; migrations still require the owner connection. A real deployment also needs separate migration credentials, managed secrets, shared throttling, operational monitoring, cleanup/retention jobs, TLS termination, and a reviewed proxy configuration. No real payment provider, KYC, fraud engine, MFA, backup system, or production security certification is claimed.
 
 ## Dependency sources
 

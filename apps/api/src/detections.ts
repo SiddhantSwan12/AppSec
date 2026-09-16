@@ -1,4 +1,5 @@
 import { pool } from "./db.js";
+import type { Queryable } from "./audit.js";
 
 /**
  * Detection rules read the audit trail that the application already writes.
@@ -130,13 +131,13 @@ export type Alert = {
 
 const order: Record<Severity, number> = { high: 0, medium: 1, low: 2 };
 
-export async function evaluate(): Promise<Alert[]> {
+export async function evaluate(db: Queryable = pool): Promise<Alert[]> {
   const alerts: Alert[] = [];
   for (const rule of rules) {
     // SQL comes only from the rule table above; the window and threshold are
     // the sole bound parameters.
     const rows = (
-      await pool.query(rule.sql, [rule.windowMinutes, rule.threshold])
+      await db.query(rule.sql, [rule.windowMinutes, rule.threshold])
     ).rows as { subject: string; count: number; last_seen: Date }[];
     for (const row of rows)
       alerts.push({
