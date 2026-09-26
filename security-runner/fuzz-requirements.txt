@@ -1,1 +1,1 @@
-schemathesis>=4,<5
+schemathesis>=4.28.0,<5
